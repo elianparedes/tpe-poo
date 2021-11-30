@@ -8,15 +8,20 @@ import ar.edu.itba.poo.tpe.backend.model.Rectangle;
 import ar.edu.itba.poo.tpe.frontend.Drawable.DrawableCircle;
 import ar.edu.itba.poo.tpe.frontend.Drawable.DrawableFigure;
 import ar.edu.itba.poo.tpe.frontend.Drawable.DrawableRectangle;
+import ar.edu.itba.poo.tpe.frontend.figuresbutton.FigureToggleButton;
+import ar.edu.itba.poo.tpe.frontend.figuresbutton.FiguresButtons;
 import javafx.geometry.Insets;
 import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ToggleButton;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+
+import java.util.ArrayList;
 
 public class PaintPane extends BorderPane {
 
@@ -31,8 +36,6 @@ public class PaintPane extends BorderPane {
 
 	// Botones Barra Izquierda
 	ToggleButton selectionButton = new ToggleButton("Seleccionar");
-	ToggleButton rectangleButton = new ToggleButton("Rectángulo");
-	ToggleButton circleButton = new ToggleButton("Círculo");
 
 	// Dibujar una figura
 	Point startPoint;
@@ -46,15 +49,37 @@ public class PaintPane extends BorderPane {
 	public PaintPane(CanvasState canvasState, StatusPane statusPane) {
 		this.canvasState = canvasState;
 		this.statusPane = statusPane;
-		ToggleButton[] toolsArr = {selectionButton, rectangleButton, circleButton};
-		ToggleGroup tools = new ToggleGroup();
-		for (ToggleButton tool : toolsArr) {
+		ArrayList<ToggleButton> figureToolsArr = new ArrayList<>();
+		ArrayList<ToggleButton> selectionToolsArr = new ArrayList<>();
+		selectionToolsArr.add(selectionButton);
+		for (FiguresButtons buttonType: FiguresButtons.values()) {
+			figureToolsArr.add(buttonType.getButton());
+		}
+		ToggleGroup figureTools = new ToggleGroup();
+		ToggleGroup selectionTools = new ToggleGroup();
+		/*
+		Manejar este comportamiento en una funcion auxiliar para ambos tipos de grupos (de edicion y de figuras)
+		 */
+
+		for (ToggleButton tool : figureToolsArr) {
 			tool.setMinWidth(90);
-			tool.setToggleGroup(tools);
+			tool.setToggleGroup(figureTools);
 			tool.setCursor(Cursor.HAND);
 		}
+		for (ToggleButton tool : selectionToolsArr) {
+			tool.setMinWidth(90);
+			tool.setToggleGroup(selectionTools);
+			tool.setCursor(Cursor.HAND);
+		}
+		/*
+		--------------------------------------------------------------------------------------------------------
+		--------------------------------------------------------------------------------------------------------
+		 */
 		VBox buttonsBox = new VBox(10);
-		buttonsBox.getChildren().addAll(toolsArr);
+
+		buttonsBox.getChildren().addAll(selectionToolsArr); // estas dos lineas quedan un poco raras
+		buttonsBox.getChildren().addAll(figureToolsArr);
+
 		buttonsBox.setPadding(new Insets(5));
 		buttonsBox.setStyle("-fx-background-color: #999");
 		buttonsBox.setPrefWidth(100);
@@ -70,17 +95,10 @@ public class PaintPane extends BorderPane {
 			if(endPoint.getX() < startPoint.getX() || endPoint.getY() < startPoint.getY()) {
 				return ;
 			}
-			Figure newFigure = null;
-			if(rectangleButton.isSelected()) {
-				newFigure = new DrawableRectangle(startPoint, endPoint);
-			}
-			else if(circleButton.isSelected()) {
-				double circleRadius = Math.abs(endPoint.getX() - startPoint.getX());
-				newFigure = new DrawableCircle(startPoint, circleRadius);
-			} else {
-				return ;
-			}
-			canvasState.addFigure(newFigure);
+			FigureToggleButton selectedButton = (FigureToggleButton)(figureTools.getSelectedToggle());
+			if(selectedButton == null)
+				return;
+			canvasState.addFigure(selectedButton.createFigure());
 			startPoint = null;
 			redrawCanvas();
 		});
