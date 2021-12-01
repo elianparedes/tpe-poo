@@ -13,11 +13,13 @@ public class DrawableCircle extends Circle implements DrawableFigure{
 
     @Override
     public void fillFigure(GraphicsContext gc) {
-        gc.fillOval(getCenterPoint().getX() - getRadius(), getCenterPoint().getY() - getRadius(), diameter, diameter);
+        gc.fillOval(getCenterPoint().getX() - getRadius(),
+                getCenterPoint().getY() - getRadius(), diameter, diameter);
     }
 
     @Override
     public void strokeFigure(GraphicsContext gc) {
-        gc.strokeOval(getCenterPoint().getX() - getRadius(), getCenterPoint().getY() - getRadius(), diameter, diameter);
+        gc.strokeOval(getCenterPoint().getX() - getRadius(),
+                getCenterPoint().getY() - getRadius(), diameter, diameter);
     }
 }

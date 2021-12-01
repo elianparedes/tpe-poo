@@ -11,6 +11,8 @@ import java.util.Arrays;
 
 public class ToolsPane extends VBox {
 
+    ToolsListener toolsListener;
+
     ToggleButton selectionButton = new ToggleButton("Seleccionar");
     ToggleButton rectangleButton = new ToggleButton("Rectángulo");
     ToggleButton circleButton = new ToggleButton("Círculo");
@@ -34,6 +36,10 @@ public class ToolsPane extends VBox {
 
         getChildren().addAll(toggleButtons);;
 
+    }
+
+    public void setToolsListener(ToolsListener toolsListener){
+        this.toolsListener = toolsListener;
     }
 
 }
