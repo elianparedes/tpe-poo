@@ -3,33 +3,44 @@ package ar.edu.itba.poo.tpe.frontend.drawable;
 import ar.edu.itba.poo.tpe.backend.model.Point;
 import ar.edu.itba.poo.tpe.backend.model.Rectangle;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
-public class DrawableRectangle extends Rectangle implements DrawableFigure{
+public class DrawableRectangle extends DrawableFigure{
+    private Rectangle rectangle;
+    public DrawableRectangle(Rectangle rectangle, double stroke, Color fill) {
+        super(stroke, fill);
+        this.rectangle=rectangle;
+    }
 
-    public DrawableRectangle(Point topLeft, Point bottomRight) {
-        super(topLeft, bottomRight);
+    public DrawableRectangle(Rectangle rectangle){
+        this(rectangle, 1, Color.YELLOW);
+
     }
 
     @Override
     public boolean pointBelongs(Point point) {
-        return super.pointBelongs(point);
+        return rectangle.pointBelongs(point);
     }
 
     @Override
-    public void draw(GraphicsContext graphicsContext) {
-        DrawableFigure.super.draw(graphicsContext);
+    public void moveFigure(double deltaX, double deltaY) {
+        rectangle.moveFigure(deltaX, deltaY);
     }
 
     @Override
-    public void setFill(GraphicsContext graphicsContext) {
-        graphicsContext.fillRect(getTopLeft().getX(), getTopLeft().getY(),
-                Math.abs(getTopLeft().getX() - getBottomRight().getX()), Math.abs(getTopLeft().getY() - getBottomRight().getY()));
+    public void fillFigure(GraphicsContext gc) {
+        Point topLeft= rectangle.getTopLeft();
+        Point bottomRight=rectangle.getBottomRight();
+        gc.fillRect(topLeft.getX(), topLeft.getY(),
+                Math.abs(topLeft.getX() - bottomRight.getX()), Math.abs(topLeft.getY() - bottomRight.getY()));
     }
 
     @Override
-    public void setStroke(GraphicsContext graphicsContext) {
-        graphicsContext.strokeRect(getTopLeft().getX(), getTopLeft().getY(),
-                Math.abs(getTopLeft().getX() - getBottomRight().getX()), Math.abs(getTopLeft().getY() - getBottomRight().getY()));
+    public void strokeFigure(GraphicsContext gc) {
+        Point topLeft= rectangle.getTopLeft();
+        Point bottomRight=rectangle.getBottomRight();
+        gc.strokeRect(topLeft.getX(), topLeft.getY(),
+                Math.abs(topLeft.getX() - bottomRight.getX()), Math.abs(topLeft.getY() - bottomRight.getY()));
     }
 
 }

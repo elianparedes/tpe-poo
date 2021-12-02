@@ -2,18 +2,36 @@ package ar.edu.itba.poo.tpe.frontend.drawable;
 
 import ar.edu.itba.poo.tpe.backend.model.Point;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
-public interface DrawableFigure {
+public abstract class DrawableFigure {
+    private double stroke;
+    private Color fill;
 
-    default void draw(GraphicsContext graphicsContext){
-        setFill(graphicsContext);
-        setStroke(graphicsContext);
+    public DrawableFigure(double stroke, Color fill){
+        this.stroke=stroke;
+        this.fill=fill;
     }
 
-    void setFill(GraphicsContext graphicsContext);
+    public void drawFigure(GraphicsContext gc){
+        fillFigure(gc);
+        strokeFigure(gc);
+    }
 
-    void setStroke(GraphicsContext graphicsContext);
+    public  void setFill(Color fill){
+        this.fill=fill;
+    }
 
-    boolean pointBelongs(Point point);
+    public void setStroke(double stroke){
+        this.stroke=stroke;
+    }
+
+    public abstract void fillFigure(GraphicsContext gc);
+
+    public abstract void strokeFigure(GraphicsContext gc);
+
+    public abstract boolean pointBelongs(Point point);
+
+    public abstract void moveFigure(double deltaX, double deltaY);
 
 }

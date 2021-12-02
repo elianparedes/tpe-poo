@@ -30,7 +30,7 @@ public class CanvasPane extends Canvas implements ToolsListener {
     public void render() {
         clear();
         for (DrawableFigure drawableFigure : canvasState.figures()) {
-            drawableFigure.draw(graphicsContext);
+            drawableFigure.drawFigure(graphicsContext);
         }
     }
 
@@ -78,6 +78,9 @@ public class CanvasPane extends Canvas implements ToolsListener {
                         if (figure.pointBelongs(selectPoint)) {
                             selectedFigure = figure;
                         }
+                        else{
+                            selectedFigure = null;
+                        }
                     }
                 }
         );
@@ -91,16 +94,8 @@ public class CanvasPane extends Canvas implements ToolsListener {
                     Point eventPoint = new Point(e.getX(), e.getY());
                     double diffX = (eventPoint.getX() - startPoint.getX())/100 ;
                     double diffY = (eventPoint.getY() - startPoint.getY())/100 ;
-                    if (selectedFigure instanceof Rectangle) {
-                        Rectangle rectangle = (Rectangle) selectedFigure;
-                        rectangle.getTopLeft().x += diffX;
-                        rectangle.getBottomRight().x += diffX;
-                        rectangle.getTopLeft().y += diffY;
-                        rectangle.getBottomRight().y += diffY;
-                    } else if (selectedFigure instanceof Circle) {
-                        Circle circle = (Circle) selectedFigure;
-                        circle.getCenterPoint().x += diffX;
-                        circle.getCenterPoint().y += diffY;
+                    if (selectedFigure != null){
+                        selectedFigure.moveFigure(diffX, diffY);
                     }
                     render();
 

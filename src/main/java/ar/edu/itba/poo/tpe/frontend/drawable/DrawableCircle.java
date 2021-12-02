@@ -3,31 +3,44 @@ package ar.edu.itba.poo.tpe.frontend.drawable;
 import ar.edu.itba.poo.tpe.backend.model.Circle;
 import ar.edu.itba.poo.tpe.backend.model.Point;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
-public class DrawableCircle extends Circle implements DrawableFigure {
-    double diameter = getRadius() * 2;
+public class DrawableCircle extends DrawableFigure {
+    private Circle circle;
+    private double radius, diameter;
 
-    public DrawableCircle(Point centerPoint, double radius) {
-        super(centerPoint, radius);
+    public DrawableCircle(Circle circle, double border, Color fill) {
+        super(border, fill);
+        this.circle=circle;
+        this.radius=circle.getRadius();
+        this.diameter=radius*2;
+    }
+
+    public DrawableCircle(Circle circle){
+        this(circle, 1, Color.YELLOW);
+    }
+
+    @Override
+    public void moveFigure(double deltaX, double deltaY) {
+        circle.moveFigure(deltaX, deltaY);
     }
 
     @Override
     public boolean pointBelongs(Point point) {
-        return super.pointBelongs(point);
+        return circle.pointBelongs(point);
     }
 
     @Override
-    public void setFill(GraphicsContext graphicsContext) {
-        graphicsContext.fillOval(getCenterPoint().getX() - getRadius(), getCenterPoint().getY() - getRadius(), diameter, diameter);
+    public void fillFigure(GraphicsContext gc) {
+        Point centerPoint=circle.getCenterPoint();
+        gc.fillOval(centerPoint.getX() - radius, centerPoint.getY() - radius, diameter, diameter);
     }
 
     @Override
-    public void setStroke(GraphicsContext graphicsContext) {
-        graphicsContext.strokeOval(getCenterPoint().getX() - getRadius(), getCenterPoint().getY() - getRadius(), diameter, diameter);
+    public void strokeFigure(GraphicsContext gc) {
+        Point centerPoint=circle.getCenterPoint();
+        gc.strokeOval(centerPoint.getX() - radius, centerPoint.getY() -radius, diameter, diameter);
     }
 
-    @Override
-    public void draw(GraphicsContext graphicsContext) {
-        DrawableFigure.super.draw(graphicsContext);
-    }
+
 }
