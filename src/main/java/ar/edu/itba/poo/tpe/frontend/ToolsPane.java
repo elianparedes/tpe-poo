@@ -1,5 +1,6 @@
 package ar.edu.itba.poo.tpe.frontend;
 
+import ar.edu.itba.poo.tpe.frontend.painttools.PaintTool;
 import javafx.scene.Cursor;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
@@ -14,10 +15,6 @@ public class ToolsPane extends VBox {
 
     ToolsListener toolsListener;
 
-    ToggleButton selectionButton = new ToggleButton("Seleccionar");
-    ToggleButton rectangleButton = new ToggleButton("Rectángulo");
-    ToggleButton circleButton = new ToggleButton("Círculo");
-
     public ToolsPane(){
         this.setStyle(
                 "-fx-background-color: #999;" +
@@ -26,28 +23,22 @@ public class ToolsPane extends VBox {
                 " -fx-pref-width: 100"
         );
 
-        ToggleGroup toggleGroup = new ToggleGroup();
-
-        ToggleButton[] toggleButtons = {selectionButton, rectangleButton, circleButton};
-        Arrays.stream(toggleButtons).forEach(toggleButton -> {
-            toggleButton.setStyle("-fx-min-width: 90");
-            toggleButton.setCursor(Cursor.HAND);
-            toggleButton.setToggleGroup(toggleGroup);
-        });
-
-        getChildren().addAll(toggleButtons);
+        Tools tools = new Tools();
+        ToggleGroup toggleGroup = tools.getToggleGroup();
+        getChildren().addAll(tools.getToggleSet());
 
         /*
          * Para manejar el evento de cambio de estado del ToggleGroup
          */
 
         toggleGroup.selectedToggleProperty().addListener(e -> {
-            Toggle toggle = toggleGroup.getSelectedToggle();
-            if (toggle == null)
+            Toggle selectedToggle = toggleGroup.getSelectedToggle();
+            if(selectedToggle == null) {
                 toolsListener.onIdle();
-            else {
-                //TODO: Implementar el seleccionado de una herramienta correspondiente
+                return;
             }
+            PaintTool selectedTool = tools.getSelectedTool(selectedToggle);
+            selectedTool.action(toolsListener);
         });
 
     }

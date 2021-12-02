@@ -4,7 +4,7 @@ import ar.edu.itba.poo.tpe.backend.model.Circle;
 import ar.edu.itba.poo.tpe.backend.model.Point;
 import javafx.scene.canvas.GraphicsContext;
 
-public class DrawableCircle extends Circle implements DrawableFigure{
+public class DrawableCircle extends Circle implements DrawableFigure {
     double diameter = getRadius() * 2;
 
     public DrawableCircle(Point centerPoint, double radius) {
@@ -12,14 +12,22 @@ public class DrawableCircle extends Circle implements DrawableFigure{
     }
 
     @Override
-    public void fillFigure(GraphicsContext gc) {
-        gc.fillOval(getCenterPoint().getX() - getRadius(),
-                getCenterPoint().getY() - getRadius(), diameter, diameter);
+    public boolean pointBelongs(Point point) {
+        return super.pointBelongs(point);
     }
 
     @Override
-    public void strokeFigure(GraphicsContext gc) {
-        gc.strokeOval(getCenterPoint().getX() - getRadius(),
-                getCenterPoint().getY() - getRadius(), diameter, diameter);
+    public void setFill(GraphicsContext graphicsContext) {
+        graphicsContext.fillOval(getCenterPoint().getX() - getRadius(), getCenterPoint().getY() - getRadius(), diameter, diameter);
+    }
+
+    @Override
+    public void setStroke(GraphicsContext graphicsContext) {
+        graphicsContext.strokeOval(getCenterPoint().getX() - getRadius(), getCenterPoint().getY() - getRadius(), diameter, diameter);
+    }
+
+    @Override
+    public void draw(GraphicsContext graphicsContext) {
+        DrawableFigure.super.draw(graphicsContext);
     }
 }

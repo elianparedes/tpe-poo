@@ -1,0 +1,53 @@
+package ar.edu.itba.poo.tpe.frontend;
+
+import ar.edu.itba.poo.tpe.frontend.painttools.CircleTool;
+import ar.edu.itba.poo.tpe.frontend.painttools.PaintTool;
+import ar.edu.itba.poo.tpe.frontend.painttools.RectangleTool;
+import ar.edu.itba.poo.tpe.frontend.painttools.SelectionTool;
+import javafx.scene.Cursor;
+import javafx.scene.control.Toggle;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.control.ToggleGroup;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+public class Tools {
+
+    Map<ToggleButton, PaintTool> tools = new HashMap<>();
+    ToggleButton selection = new ToggleButton("Selección");
+    ToggleButton rectangle = new ToggleButton("Rectángulo");
+    ToggleButton circle = new ToggleButton("Círculo");
+    ToggleGroup toggleGroup = new ToggleGroup();
+
+    public Tools() {
+        tools.put(selection,new SelectionTool());
+        tools.put(rectangle,new RectangleTool());
+        tools.put(circle,new CircleTool());
+        setToggleGroup();
+    }
+
+    public Set<ToggleButton> getToggleSet(){
+        return tools.keySet();
+    }
+
+    public ToggleGroup getToggleGroup(){
+        return toggleGroup;
+    }
+
+    public PaintTool getSelectedTool(Toggle selectedToggle){
+        return tools.get(selectedToggle);
+    }
+
+    private void setToggleGroup(){
+        Set<ToggleButton> toggleSet = tools.keySet();
+        for (ToggleButton toggle : toggleSet ) {
+            toggle.setStyle("-fx-min-width: 90");
+            toggle.setCursor(Cursor.HAND);
+            toggle.setToggleGroup(toggleGroup);
+        }
+    }
+
+}

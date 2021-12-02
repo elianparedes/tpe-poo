@@ -1,5 +1,11 @@
 package ar.edu.itba.poo.tpe.frontend;
 
+import ar.edu.itba.poo.tpe.backend.model.Circle;
+import ar.edu.itba.poo.tpe.backend.model.Point;
+import ar.edu.itba.poo.tpe.backend.model.Rectangle;
+import ar.edu.itba.poo.tpe.frontend.Drawable.DrawableFigure;
+import ar.edu.itba.poo.tpe.frontend.painttools.DrawTool;
+import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -7,42 +13,84 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class CanvasPane extends Canvas implements ToolsListener {
 
-    GraphicsContext graphicsContext;
-    CanvasState canvasState;
+    private final GraphicsContext graphicsContext = getGraphicsContext2D();
+    private final CanvasState canvasState;
+    private Point startPoint, endPoint, selectPoint;
+    private DrawableFigure selectedFigure;
 
     public CanvasPane(CanvasState canvasState){
         super(800,600);
-        graphicsContext = getGraphicsContext2D();
         this.canvasState = canvasState;
+        this.setCursor(Cursor.CROSSHAIR);
     }
 
+    public void render() {
+        clear();
+        for (DrawableFigure drawableFigure : canvasState.figures()) {
+            drawableFigure.draw(graphicsContext);
+        }
+    }
+
+    public void clear() {
+        graphicsContext.clearRect(0, 0, this.getWidth(), this.getHeight());
+    }
+
+
     @Override
-    public void onFigureDraw() {
+    public void onFigureDraw(DrawTool tool) {
         this.setOnMousePressed(e -> {
-            //Hacer algo cuando se presiona el mouse
+            startPoint = new Point(e.getX(), e.getY());
         });
 
         this.setOnMouseDragged(e -> {
-            //Hacer algo cuando se arrastra el mouse
+            endPoint = new Point(e.getX(), e.getY());
         });
 
         this.setOnMouseReleased(e -> {
-            //Hacer algo cuando se suelta el mouse
+            canvasState.addFigure(tool.createFigure(startPoint, endPoint));
+            render();
         });
     }
 
-    @Override
-    public void onSelection() {
-        this.setOnMousePressed(e -> {
-            //Hacer algo cuando se presiona el mouse
-        });
+    public void onSelect() {
 
-        this.setOnMouseDragged(e -> {
-            //Hacer algo cuando se arrastra el mouse
-        });
+        setOnMouseClicked(e -> {
+                    selectPoint= new Point(e.getX(), e.getY());
+                    for (DrawableFigure figure : canvasState.figures()) {
+                        if (figure.pointBelongs(selectPoint)) {
+                            selectedFigure = figure;
+                        }
+                    }
+                }
+        );
 
-        this.setOnMouseReleased(e -> {
-            //Hacer algo cuando se suelta el mouse
+        setOnMousePressed(e ->
+                startPoint = new Point(e.getX(), e.getY())
+        );
+
+        setOnMouseDragged(e -> {
+
+                    Point eventPoint = new Point(e.getX(), e.getY());
+                    double diffX = (eventPoint.getX() - startPoint.getX())/100 ;
+                    double diffY = (eventPoint.getY() - startPoint.getY())/100 ;
+                    if (selectedFigure instanceof Rectangle) {
+                        Rectangle rectangle = (Rectangle) selectedFigure;
+                        rectangle.getTopLeft().x += diffX;
+                        rectangle.getBottomRight().x += diffX;
+                        rectangle.getTopLeft().y += diffY;
+                        rectangle.getBottomRight().y += diffY;
+                    } else if (selectedFigure instanceof Circle) {
+                        Circle circle = (Circle) selectedFigure;
+                        circle.getCenterPoint().x += diffX;
+                        circle.getCenterPoint().y += diffY;
+                    }
+                    render();
+
+                }
+        );
+
+        setOnMouseReleased(e -> {
+            selectPoint = null;
         });
     }
 

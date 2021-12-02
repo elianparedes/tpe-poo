@@ -22,4 +22,8 @@ public class Point {
         return String.format("{%.2f , %.2f}", x, y);
     }
 
+    public double distance(Point point){
+        return Math.abs(Math.sqrt((x - point.x)*(x-point.x) + (y - point.y)*(y - point.y)));
+    }
+
 }

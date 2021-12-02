@@ -11,14 +11,25 @@ public class DrawableRectangle extends Rectangle implements DrawableFigure{
     }
 
     @Override
-    public void fillFigure(GraphicsContext gc) {
-        gc.fillRect(getTopLeft().getX(), getTopLeft().getY(),
+    public boolean pointBelongs(Point point) {
+        return super.pointBelongs(point);
+    }
+
+    @Override
+    public void draw(GraphicsContext graphicsContext) {
+        DrawableFigure.super.draw(graphicsContext);
+    }
+
+    @Override
+    public void setFill(GraphicsContext graphicsContext) {
+        graphicsContext.fillRect(getTopLeft().getX(), getTopLeft().getY(),
                 Math.abs(getTopLeft().getX() - getBottomRight().getX()), Math.abs(getTopLeft().getY() - getBottomRight().getY()));
     }
 
     @Override
-    public void strokeFigure(GraphicsContext gc) {
-        gc.strokeRect(getTopLeft().getX(), getTopLeft().getY(),
+    public void setStroke(GraphicsContext graphicsContext) {
+        graphicsContext.strokeRect(getTopLeft().getX(), getTopLeft().getY(),
                 Math.abs(getTopLeft().getX() - getBottomRight().getX()), Math.abs(getTopLeft().getY() - getBottomRight().getY()));
     }
+
 }
