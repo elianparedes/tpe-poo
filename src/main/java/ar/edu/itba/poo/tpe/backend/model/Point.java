@@ -22,9 +22,9 @@ public class Point {
         return String.format("{%.2f , %.2f}", x, y);
     }
 
-    public void movePoint(double deltax, double deltay){
-        this.x += deltax;
-        this.y += deltay;
+    public void movePoint(double deltaX, double deltaY){
+        this.x += deltaX;
+        this.y += deltaY;
     }
 
     public double distance(Point point){

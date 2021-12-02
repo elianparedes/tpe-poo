@@ -9,15 +9,15 @@ public class DrawableCircle extends DrawableFigure {
     private Circle circle;
     private double radius, diameter;
 
-    public DrawableCircle(Circle circle, double border, Color fill) {
-        super(border, fill);
+    public DrawableCircle(Circle circle, Color stroke, Color fill, double lineWidth) {
+        super(stroke, fill, lineWidth);
         this.circle=circle;
         this.radius=circle.getRadius();
         this.diameter=radius*2;
     }
 
     public DrawableCircle(Circle circle){
-        this(circle, 1, Color.YELLOW);
+        this(circle, Color.RED, Color.YELLOW, 1);
     }
 
     @Override
@@ -32,12 +32,14 @@ public class DrawableCircle extends DrawableFigure {
 
     @Override
     public void fillFigure(GraphicsContext gc) {
+        setGraphicsContext(gc);
         Point centerPoint=circle.getCenterPoint();
         gc.fillOval(centerPoint.getX() - radius, centerPoint.getY() - radius, diameter, diameter);
     }
 
     @Override
     public void strokeFigure(GraphicsContext gc) {
+        setGraphicsContext(gc);
         Point centerPoint=circle.getCenterPoint();
         gc.strokeOval(centerPoint.getX() - radius, centerPoint.getY() -radius, diameter, diameter);
     }

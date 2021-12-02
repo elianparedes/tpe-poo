@@ -7,14 +7,13 @@ import javafx.scene.paint.Color;
 
 public class DrawableRectangle extends DrawableFigure{
     private Rectangle rectangle;
-    public DrawableRectangle(Rectangle rectangle, double stroke, Color fill) {
-        super(stroke, fill);
+    public DrawableRectangle(Rectangle rectangle, Color stroke, Color fill, double lineWidth) {
+        super(stroke, fill, lineWidth);
         this.rectangle=rectangle;
     }
 
     public DrawableRectangle(Rectangle rectangle){
-        this(rectangle, 1, Color.YELLOW);
-
+        this(rectangle, Color.RED, Color.YELLOW, 1);
     }
 
     @Override
@@ -29,6 +28,7 @@ public class DrawableRectangle extends DrawableFigure{
 
     @Override
     public void fillFigure(GraphicsContext gc) {
+        setGraphicsContext(gc);
         Point topLeft= rectangle.getTopLeft();
         Point bottomRight=rectangle.getBottomRight();
         gc.fillRect(topLeft.getX(), topLeft.getY(),
@@ -37,6 +37,7 @@ public class DrawableRectangle extends DrawableFigure{
 
     @Override
     public void strokeFigure(GraphicsContext gc) {
+        setGraphicsContext(gc);
         Point topLeft= rectangle.getTopLeft();
         Point bottomRight=rectangle.getBottomRight();
         gc.strokeRect(topLeft.getX(), topLeft.getY(),
