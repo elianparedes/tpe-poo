@@ -1,6 +1,7 @@
 package ar.edu.itba.poo.tpe.frontend;
 
 import javafx.scene.Cursor;
+import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
@@ -34,7 +35,20 @@ public class ToolsPane extends VBox {
             toggleButton.setToggleGroup(toggleGroup);
         });
 
-        getChildren().addAll(toggleButtons);;
+        getChildren().addAll(toggleButtons);
+
+        /*
+         * Para manejar el evento de cambio de estado del ToggleGroup
+         */
+
+        toggleGroup.selectedToggleProperty().addListener(e -> {
+            Toggle toggle = toggleGroup.getSelectedToggle();
+            if (toggle == null)
+                toolsListener.onIdle();
+            else {
+                //TODO: Implementar el seleccionado de una herramienta correspondiente
+            }
+        });
 
     }
 

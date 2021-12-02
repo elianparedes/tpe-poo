@@ -1,6 +1,5 @@
 package ar.edu.itba.poo.tpe.frontend;
 
-import ar.edu.itba.poo.tpe.backend.CanvasState;
 import javafx.scene.layout.VBox;
 
 public class MainFrame extends VBox {

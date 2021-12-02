@@ -1,6 +1,5 @@
 package ar.edu.itba.poo.tpe.frontend;
 
-import ar.edu.itba.poo.tpe.backend.CanvasState;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -18,7 +17,47 @@ public class CanvasPane extends Canvas implements ToolsListener {
     }
 
     @Override
-    public void onToolSelected() {
+    public void onFigureDraw() {
+        this.setOnMousePressed(e -> {
+            //Hacer algo cuando se presiona el mouse
+        });
+
+        this.setOnMouseDragged(e -> {
+            //Hacer algo cuando se arrastra el mouse
+        });
+
+        this.setOnMouseReleased(e -> {
+            //Hacer algo cuando se suelta el mouse
+        });
+    }
+
+    @Override
+    public void onSelection() {
+        this.setOnMousePressed(e -> {
+            //Hacer algo cuando se presiona el mouse
+        });
+
+        this.setOnMouseDragged(e -> {
+            //Hacer algo cuando se arrastra el mouse
+        });
+
+        this.setOnMouseReleased(e -> {
+            //Hacer algo cuando se suelta el mouse
+        });
+    }
+
+    @Override
+    public void onIdle() {
+
+        /*
+         * Reset de los eventos del Mouse, pues no se espera ningún comportamiento.
+         */
+
+        this.setOnMousePressed(null);
+
+        this.setOnMouseDragged(null);
+
+        this.setOnMouseReleased(null);
 
     }
 }
