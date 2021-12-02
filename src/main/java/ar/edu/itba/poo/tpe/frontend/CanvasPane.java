@@ -8,6 +8,7 @@ import ar.edu.itba.poo.tpe.frontend.painttools.DrawTool;
 import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.paint.Color;
 
 //TODO: Unificar los estilos. Armar una sección de estilos en la parte superior de la class?
 
@@ -17,6 +18,8 @@ public class CanvasPane extends Canvas implements ToolsListener {
     private final CanvasState canvasState;
     private Point startPoint, endPoint, selectPoint;
     private DrawableFigure selectedFigure;
+    private Color fillSelectedColor, strokeSelectedColor;
+    private double strokeSelectedWidth = 25;
 
     public CanvasPane(CanvasState canvasState){
         super(800,600);
@@ -35,6 +38,21 @@ public class CanvasPane extends Canvas implements ToolsListener {
         graphicsContext.clearRect(0, 0, this.getWidth(), this.getHeight());
     }
 
+    @Override
+    public void onFillColorSelect(Color selectedColor) {
+        this.fillSelectedColor = selectedColor;
+
+    }
+
+    @Override
+    public void onStrokeColorSelect(Color selectedColor) {
+        this.strokeSelectedColor = selectedColor;
+    }
+
+    @Override
+    public void onStrokeWidthSelect(double selectedWidth) {
+        this.strokeSelectedWidth = selectedWidth;
+    }
 
     @Override
     public void onFigureDraw(DrawTool tool) {

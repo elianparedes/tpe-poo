@@ -20,12 +20,18 @@ public class Tools {
     ToggleButton selection = new ToggleButton("Selección");
     ToggleButton rectangle = new ToggleButton("Rectángulo");
     ToggleButton circle = new ToggleButton("Círculo");
+    ToggleButton square = new ToggleButton("Cuadrado");
+    ToggleButton ellipse = new ToggleButton("Elipse");
+    ToggleButton line = new ToggleButton("Línea");
     ToggleGroup toggleGroup = new ToggleGroup();
 
     public Tools() {
         tools.put(selection,new SelectionTool());
         tools.put(rectangle,new RectangleTool());
         tools.put(circle,new CircleTool());
+        // tools.put(square, new SquareTool());
+        // tools.put(ellipse, new EllipseTool());
+        // tools.put(line, new LineTool());
         setToggleGroup();
     }
 
