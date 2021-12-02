@@ -3,7 +3,7 @@ package ar.edu.itba.poo.tpe.frontend;
 import ar.edu.itba.poo.tpe.backend.model.Circle;
 import ar.edu.itba.poo.tpe.backend.model.Point;
 import ar.edu.itba.poo.tpe.backend.model.Rectangle;
-import ar.edu.itba.poo.tpe.frontend.Drawable.DrawableFigure;
+import ar.edu.itba.poo.tpe.frontend.drawable.DrawableFigure;
 import ar.edu.itba.poo.tpe.frontend.painttools.DrawTool;
 import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;

@@ -1,4 +1,4 @@
-package ar.edu.itba.poo.tpe.frontend.Drawable;
+package ar.edu.itba.poo.tpe.frontend.drawable;
 
 import ar.edu.itba.poo.tpe.backend.model.Circle;
 import ar.edu.itba.poo.tpe.backend.model.Point;

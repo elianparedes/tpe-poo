@@ -1,13 +1,9 @@
 package ar.edu.itba.poo.tpe.frontend;
 
 import ar.edu.itba.poo.tpe.frontend.painttools.PaintTool;
-import javafx.scene.Cursor;
 import javafx.scene.control.Toggle;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
-
-import java.util.Arrays;
 
 //TODO: Unificar los estilos. Armar una sección de estilos en la parte superior de la class?
 

@@ -1,6 +1,6 @@
 package ar.edu.itba.poo.tpe.frontend;
 
-import ar.edu.itba.poo.tpe.frontend.Drawable.DrawableFigure;
+import ar.edu.itba.poo.tpe.frontend.drawable.DrawableFigure;
 
 import java.util.ArrayList;
 import java.util.List;
