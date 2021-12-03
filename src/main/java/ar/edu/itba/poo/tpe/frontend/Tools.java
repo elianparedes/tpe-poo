@@ -1,9 +1,6 @@
 package ar.edu.itba.poo.tpe.frontend;
 
-import ar.edu.itba.poo.tpe.frontend.painttools.CircleTool;
-import ar.edu.itba.poo.tpe.frontend.painttools.PaintTool;
-import ar.edu.itba.poo.tpe.frontend.painttools.RectangleTool;
-import ar.edu.itba.poo.tpe.frontend.painttools.SelectionTool;
+import ar.edu.itba.poo.tpe.frontend.painttools.*;
 import javafx.scene.Cursor;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
@@ -29,7 +26,7 @@ public class Tools {
         tools.put(selection,new SelectionTool());
         tools.put(rectangle,new RectangleTool());
         tools.put(circle,new CircleTool());
-        // tools.put(square, new SquareTool());
+        tools.put(square, new SquareTool());
         // tools.put(ellipse, new EllipseTool());
         // tools.put(line, new LineTool());
         setToggleGroup();
