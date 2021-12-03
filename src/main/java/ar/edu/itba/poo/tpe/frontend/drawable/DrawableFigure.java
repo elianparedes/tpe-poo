@@ -16,6 +16,7 @@ public abstract class DrawableFigure {
     }
 
     public void drawFigure(GraphicsContext gc){
+        setGraphicsContext(gc);
         fillFigure(gc);
         strokeFigure(gc);
     }

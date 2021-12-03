@@ -15,7 +15,7 @@ public class DrawableEllipse extends DrawableFigure{
     }
 
     public DrawableEllipse(Ellipse ellipse){
-        this(ellipse, Color.RED, Color.YELLOW, 1);
+        this(ellipse, Color.ORANGE, Color.LIGHTBLUE, 5);
     }
 
     @Override
@@ -35,7 +35,6 @@ public class DrawableEllipse extends DrawableFigure{
 
     @Override
     public void fillFigure(GraphicsContext gc) {
-        setGraphicsContext(gc);
         double sHa=ellipse.getsHorizontalAxis();
         double sVa=ellipse.getsVerticalAxis();
         Point centerPoint=ellipse.getCenterPoint();
@@ -44,7 +43,6 @@ public class DrawableEllipse extends DrawableFigure{
 
     @Override
     public void strokeFigure(GraphicsContext gc) {
-        setGraphicsContext(gc);
         double sHa=ellipse.getsHorizontalAxis();
         double sVa=ellipse.getsVerticalAxis();
         Point centerPoint=ellipse.getCenterPoint();

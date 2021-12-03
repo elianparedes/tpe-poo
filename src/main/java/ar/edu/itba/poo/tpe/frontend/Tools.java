@@ -26,8 +26,8 @@ public class Tools {
         tools.put(rectangle,new RectangleTool());
         tools.put(circle,new CircleTool());
         tools.put(square, new SquareTool());
-        // tools.put(ellipse, new EllipseTool());
-        // tools.put(line, new LineTool());
+        tools.put(ellipse, new EllipseTool());
+        tools.put(line, new LineTool());
         setToggleGroup();
     }
 

@@ -34,7 +34,6 @@ public class DrawableRectangle extends DrawableFigure{
 
     @Override
     public void fillFigure(GraphicsContext gc) {
-        setGraphicsContext(gc);
         Point topLeft= rectangle.getTopLeft();
         Point bottomRight=rectangle.getBottomRight();
         gc.fillRect(topLeft.getX(), topLeft.getY(),
@@ -43,7 +42,6 @@ public class DrawableRectangle extends DrawableFigure{
 
     @Override
     public void strokeFigure(GraphicsContext gc) {
-        setGraphicsContext(gc);
         Point topLeft= rectangle.getTopLeft();
         Point bottomRight=rectangle.getBottomRight();
         gc.strokeRect(topLeft.getX(), topLeft.getY(),
