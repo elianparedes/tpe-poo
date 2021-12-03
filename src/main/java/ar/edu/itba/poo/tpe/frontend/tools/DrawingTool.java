@@ -1,14 +1,13 @@
-package ar.edu.itba.poo.tpe.frontend.painttools;
+package ar.edu.itba.poo.tpe.frontend.tools;
 
 import ar.edu.itba.poo.tpe.backend.model.Point;
 import ar.edu.itba.poo.tpe.frontend.CanvasPane;
 import ar.edu.itba.poo.tpe.frontend.CanvasState;
 import ar.edu.itba.poo.tpe.frontend.drawable.DrawableFigure;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
-public abstract class DrawingTool implements PaintTool{
+public abstract class DrawingTool implements Tool {
     private Point startPoint , endPoint;
     private CanvasState canvasState;
     private CanvasPane canvasPane;
@@ -18,7 +17,7 @@ public abstract class DrawingTool implements PaintTool{
     public void action(CanvasPane canvasPane) {
         this.canvasPane = canvasPane;
         canvasState = canvasPane.getCanvasState();
-        canvasPane.setMouseBehavior(this);
+        canvasPane.onToolSelect(this);
     }
 
     @Override

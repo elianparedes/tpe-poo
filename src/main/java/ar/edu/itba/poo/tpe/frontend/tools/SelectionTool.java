@@ -1,10 +1,9 @@
-package ar.edu.itba.poo.tpe.frontend.painttools;
+package ar.edu.itba.poo.tpe.frontend.tools;
 
 import ar.edu.itba.poo.tpe.backend.model.Point;
 import ar.edu.itba.poo.tpe.backend.model.Rectangle;
 import ar.edu.itba.poo.tpe.frontend.CanvasPane;
 import ar.edu.itba.poo.tpe.frontend.CanvasState;
-import ar.edu.itba.poo.tpe.frontend.ToolsListener;
 import ar.edu.itba.poo.tpe.frontend.drawable.DrawableFigure;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
@@ -13,7 +12,7 @@ import javafx.scene.paint.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SelectionTool implements PaintTool {
+public class SelectionTool implements Tool {
         private DrawableFigure selectedFigure = null;
         private List<DrawableFigure> selectedFigures = new ArrayList<>();
         private Point startPoint = null , endPoint = null;
@@ -24,11 +23,22 @@ public class SelectionTool implements PaintTool {
         private Color selectedFigureColor;
         private Rectangle selectionRectangle;
 
+
+
+        /*
+        @Override
+        public void action(ToolsListener listener) {
+                this.canvasPane = canvasPane;
+                canvasState = canvasPane.getCanvasState();
+                canvasPane.onToolSelect(this);
+        }
+         */
+
         @Override
         public void action(CanvasPane canvasPane) {
                 this.canvasPane = canvasPane;
                 canvasState = canvasPane.getCanvasState();
-                canvasPane.setMouseBehavior(this);
+                canvasPane.onToolSelect(this);
         }
 
         private void setSelectedFigure(Point selectPoint){
@@ -60,11 +70,11 @@ public class SelectionTool implements PaintTool {
                                 // Si no toque ninguna figura, debo preparar un rectangulo de seleccion
                                 else
                                         startPoint = mousePoint;
-                                canvasPane.setMouseBehavior(this);
+                                canvasPane.onToolSelect(this);
                         });
                 else return (e ->{
                         startPoint = new Point(e.getX(), e.getY());
-                        canvasPane.setMouseBehavior(this);
+                        canvasPane.onToolSelect(this);
                 });
 
         }
@@ -79,7 +89,7 @@ public class SelectionTool implements PaintTool {
                         - Estoy arrastando para crear un rectangulo de seleccion
                  */
                 if(selectionActive == false)
-                        return (e->{canvasPane.setMouseBehavior(this);});
+                        return (e->{canvasPane.onToolSelect(this);});
 
                 if(!(selectedFigures.isEmpty()) || (selectedFigure != null)){
                         return (e -> {
@@ -98,11 +108,11 @@ public class SelectionTool implements PaintTool {
                                 }
                                 startPoint = eventPoint;
                                 canvasPane.render();
-                                canvasPane.setMouseBehavior(this);
+                                canvasPane.onToolSelect(this);
                         });
                 }
                 System.out.println("llegue hasta este punto");
-                return (e->{canvasPane.setMouseBehavior(this);});
+                return (e->{canvasPane.onToolSelect(this);});
         }
 
 
@@ -133,7 +143,7 @@ public class SelectionTool implements PaintTool {
                                         canvasPane.render();
                                         selectionActive = true;
                                 }
-                                canvasPane.setMouseBehavior(this);
+                                canvasPane.onToolSelect(this);
                         });
                 }
                 if(selectedFigure != null){
@@ -143,12 +153,12 @@ public class SelectionTool implements PaintTool {
                                         selectedFigure = null;
                                         selectionActive = false;
                                         canvasPane.render();
-                                        canvasPane.setMouseBehavior(this);
+                                        canvasPane.onToolSelect(this);
                                 });
                         }else
                                 return (e->{
                                         selectionActive = true;
-                                        canvasPane.setMouseBehavior(this);
+                                        canvasPane.onToolSelect(this);
                                 });
                 }
                 return (e->{
@@ -158,7 +168,7 @@ public class SelectionTool implements PaintTool {
                         canvasPane.render();
                         selectedFigures = new ArrayList<>();
                         selectionActive = false;
-                        canvasPane.setMouseBehavior(this);
+                        canvasPane.onToolSelect(this);
                 });
         }
 }

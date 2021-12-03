@@ -1,8 +1,7 @@
 package ar.edu.itba.poo.tpe.frontend;
 
-import ar.edu.itba.poo.tpe.backend.model.Point;
 import ar.edu.itba.poo.tpe.frontend.drawable.DrawableFigure;
-import ar.edu.itba.poo.tpe.frontend.painttools.PaintTool;
+import ar.edu.itba.poo.tpe.frontend.tools.Tool;
 import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -10,7 +9,7 @@ import javafx.scene.paint.Color;
 
 //TODO: Unificar los estilos. Armar una sección de estilos en la parte superior de la class?
 
-public class CanvasPane extends Canvas implements ToolsListener {
+public class CanvasPane extends Canvas implements MouseEventListener {
 
     private final GraphicsContext graphicsContext = getGraphicsContext2D();
     private final CanvasState canvasState;
@@ -39,20 +38,16 @@ public class CanvasPane extends Canvas implements ToolsListener {
     }
 
     @Override
-    public void setMouseBehavior(PaintTool tool) {
+    public void onToolSelect(Tool tool) {
         this.setOnMousePressed(tool.getOnMousePressed());
         this.setOnMouseReleased(tool.getOnMouseRealesed());
         this.setOnMouseDragged(tool.getOnMouseDragged());
     }
 
     @Override
-    public void onIdle() {
-
+    public void onToolUnselect() {
         this.setOnMousePressed(null);
-
         this.setOnMouseDragged(null);
-
         this.setOnMouseReleased(null);
-
     }
 }

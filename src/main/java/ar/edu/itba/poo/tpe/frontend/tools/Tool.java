@@ -1,11 +1,10 @@
-package ar.edu.itba.poo.tpe.frontend.painttools;
+package ar.edu.itba.poo.tpe.frontend.tools;
 
 import ar.edu.itba.poo.tpe.frontend.CanvasPane;
-import ar.edu.itba.poo.tpe.frontend.ToolsListener;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
-public interface PaintTool {
+public interface Tool {
     void action(CanvasPane canvasPane);
     EventHandler<MouseEvent> getOnMouseDragged();
     EventHandler<MouseEvent> getOnMousePressed();

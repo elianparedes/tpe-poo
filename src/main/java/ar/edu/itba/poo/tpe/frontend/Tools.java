@@ -1,19 +1,18 @@
 package ar.edu.itba.poo.tpe.frontend;
 
-import ar.edu.itba.poo.tpe.frontend.painttools.*;
+import ar.edu.itba.poo.tpe.frontend.tools.*;
 import javafx.scene.Cursor;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 public class Tools {
 
-    Map<ToggleButton, PaintTool> tools = new HashMap<>();
+    Map<ToggleButton, Tool> tools = new HashMap<>();
     ToggleButton selection = new ToggleButton("Selección");
     ToggleButton rectangle = new ToggleButton("Rectángulo");
     ToggleButton circle = new ToggleButton("Círculo");
@@ -40,7 +39,7 @@ public class Tools {
         return toggleGroup;
     }
 
-    public PaintTool getSelectedTool(Toggle selectedToggle){
+    public Tool getSelectedTool(Toggle selectedToggle){
         return tools.get(selectedToggle);
     }
 

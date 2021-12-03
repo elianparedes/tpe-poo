@@ -1,10 +1,9 @@
 package ar.edu.itba.poo.tpe.frontend;
 
-import ar.edu.itba.poo.tpe.frontend.painttools.PaintTool;
+import ar.edu.itba.poo.tpe.frontend.tools.*;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 
 //TODO: Unificar los estilos. Armar una sección de estilos en la parte superior de la class?
 
@@ -21,9 +20,9 @@ public class ToolsPane extends VBox {
         );
 
         this.getChildren().addAll(
-                createToolsModule());
-                //createStrokeModule(),
-                //createFillModule()
+                createToolsModule(),
+                createStrokeModule(),
+                createFillModule());
     }
 
     public void setToolsListener(CanvasPane canvasPane) {
@@ -40,12 +39,12 @@ public class ToolsPane extends VBox {
         ToggleGroup toggleGroup = tools.getToggleGroup();
         toggleGroup.selectedToggleProperty().addListener(e -> {
             Toggle selectedToggle = toggleGroup.getSelectedToggle();
-            if (selectedToggle == null) {
-                canvasPane.onIdle();
-                return;
+            if (selectedToggle == null)
+                canvasPane.onToolUnselect();
+            else{
+                Tool selectedTool = tools.getSelectedTool(selectedToggle);
+                selectedTool.action(canvasPane);
             }
-            PaintTool selectedTool = tools.getSelectedTool(selectedToggle);
-            selectedTool.action(canvasPane);
         });
         module.getChildren().addAll(tools.getToggleSet());
 
@@ -53,7 +52,7 @@ public class ToolsPane extends VBox {
     }
 
     //TODO: Analizar qué ocurre cuando se selecciona un color por default
-    /*
+
     private Node createStrokeModule() {
         VBox module = new VBox();
         Label strokeTitle = new Label("Borde");
@@ -62,12 +61,12 @@ public class ToolsPane extends VBox {
         strokeSlider.setShowTickMarks(true);
         strokeSlider.setShowTickLabels(true);
         strokeSlider.setOnMouseReleased(e -> {
-            toolsListener.onStrokeWidthSelect(strokeSlider.getValue());
+            //toolsListener.onStrokeWidthSelect(strokeSlider.getValue());
         });
 
         ColorPicker strokeColorPicker = new ColorPicker();
         strokeColorPicker.setOnAction(e -> {
-            toolsListener.onStrokeColorSelect(strokeColorPicker.getValue());
+           // toolsListener.onStrokeColorSelect(strokeColorPicker.getValue());
         });
         module.getChildren().addAll(strokeTitle, strokeSlider, strokeColorPicker);
 
@@ -81,12 +80,12 @@ public class ToolsPane extends VBox {
         ColorPicker fillColorPicker = new ColorPicker();
 
         fillColorPicker.setOnAction(e -> {
-            toolsListener.onFillColorSelect(fillColorPicker.getValue());
+            //toolsListener.onFillColorSelect(fillColorPicker.getValue());
         });
 
         module.getChildren().addAll(fillTitle, fillColorPicker);
 
         return module;
-    }*/
+    }
 
 }
