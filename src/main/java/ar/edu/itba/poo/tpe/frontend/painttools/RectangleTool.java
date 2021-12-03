@@ -6,14 +6,9 @@ import ar.edu.itba.poo.tpe.frontend.drawable.DrawableFigure;
 import ar.edu.itba.poo.tpe.frontend.drawable.DrawableRectangle;
 import ar.edu.itba.poo.tpe.frontend.ToolsListener;
 
-public class RectangleTool implements DrawTool{
+public class RectangleTool extends DrawingTool{
     @Override
     public DrawableFigure createFigure(Point firstPoint, Point secondPoint) {
         return new DrawableRectangle(new Rectangle(firstPoint,secondPoint));
-    }
-
-    @Override
-    public void action(ToolsListener toolsListener) {
-        toolsListener.onFigureDraw(this);
     }
 }

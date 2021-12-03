@@ -1,6 +1,7 @@
 package ar.edu.itba.poo.tpe.frontend.drawable;
 
 import ar.edu.itba.poo.tpe.backend.model.Ellipse;
+import ar.edu.itba.poo.tpe.backend.model.Figure;
 import ar.edu.itba.poo.tpe.backend.model.Point;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -15,6 +16,11 @@ public class DrawableEllipse extends DrawableFigure{
 
     public DrawableEllipse(Ellipse ellipse){
         this(ellipse, Color.RED, Color.YELLOW, 1);
+    }
+
+    @Override
+    public Figure getFigure() {
+        return ellipse;
     }
 
     @Override

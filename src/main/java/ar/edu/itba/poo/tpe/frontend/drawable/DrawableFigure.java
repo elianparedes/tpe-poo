@@ -1,5 +1,6 @@
 package ar.edu.itba.poo.tpe.frontend.drawable;
 
+import ar.edu.itba.poo.tpe.backend.model.Figure;
 import ar.edu.itba.poo.tpe.backend.model.Point;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
@@ -26,6 +27,8 @@ public abstract class DrawableFigure {
     }
 
     public Color getStroke(){return this.stroke;}
+
+    public abstract Figure getFigure();
 
     public void setFill(Color fill){
         this.fill=fill;

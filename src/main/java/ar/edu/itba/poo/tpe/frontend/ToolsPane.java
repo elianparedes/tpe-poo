@@ -10,7 +10,7 @@ import javafx.scene.paint.Color;
 
 public class ToolsPane extends VBox {
 
-    ToolsListener toolsListener;
+    CanvasPane canvasPane;
 
     public ToolsPane() {
         this.setStyle(
@@ -21,14 +21,13 @@ public class ToolsPane extends VBox {
         );
 
         this.getChildren().addAll(
-                createToolsModule(),
-                createStrokeModule(),
-                createFillModule()
-        );
+                createToolsModule());
+                //createStrokeModule(),
+                //createFillModule()
     }
 
-    public void setToolsListener(ToolsListener toolsListener) {
-        this.toolsListener = toolsListener;
+    public void setToolsListener(CanvasPane canvasPane) {
+        this.canvasPane = canvasPane;
     }
 
     private Node createToolsModule() {
@@ -42,11 +41,11 @@ public class ToolsPane extends VBox {
         toggleGroup.selectedToggleProperty().addListener(e -> {
             Toggle selectedToggle = toggleGroup.getSelectedToggle();
             if (selectedToggle == null) {
-                toolsListener.onIdle();
+                canvasPane.onIdle();
                 return;
             }
             PaintTool selectedTool = tools.getSelectedTool(selectedToggle);
-            selectedTool.action(toolsListener);
+            selectedTool.action(canvasPane);
         });
         module.getChildren().addAll(tools.getToggleSet());
 
@@ -54,7 +53,7 @@ public class ToolsPane extends VBox {
     }
 
     //TODO: Analizar qué ocurre cuando se selecciona un color por default
-
+    /*
     private Node createStrokeModule() {
         VBox module = new VBox();
         Label strokeTitle = new Label("Borde");
@@ -88,6 +87,6 @@ public class ToolsPane extends VBox {
         module.getChildren().addAll(fillTitle, fillColorPicker);
 
         return module;
-    }
+    }*/
 
 }

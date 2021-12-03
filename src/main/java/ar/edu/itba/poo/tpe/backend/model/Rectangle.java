@@ -1,5 +1,8 @@
 package ar.edu.itba.poo.tpe.backend.model;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Rectangle extends Figure {
 
     private final Point topLeft, bottomRight;
@@ -27,6 +30,14 @@ public class Rectangle extends Figure {
     public void moveFigure(double deltaX, double deltaY){
         topLeft.movePoint(deltaX, deltaY);
         bottomRight.movePoint(deltaX, deltaY);
+    }
+
+    @Override
+    public Set<Point> getOutsidePoints() {
+        Set<Point> outsidePoints = new HashSet<>();
+        outsidePoints.add(topLeft);
+        outsidePoints.add(bottomRight);
+        return outsidePoints;
     }
 
     @Override

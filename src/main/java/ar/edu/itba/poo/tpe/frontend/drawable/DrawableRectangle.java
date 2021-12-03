@@ -1,5 +1,6 @@
 package ar.edu.itba.poo.tpe.frontend.drawable;
 
+import ar.edu.itba.poo.tpe.backend.model.Figure;
 import ar.edu.itba.poo.tpe.backend.model.Point;
 import ar.edu.itba.poo.tpe.backend.model.Rectangle;
 import javafx.scene.canvas.GraphicsContext;
@@ -14,6 +15,11 @@ public class DrawableRectangle extends DrawableFigure{
 
     public DrawableRectangle(Rectangle rectangle){
         this(rectangle, Color.ORANGE, Color.LIGHTBLUE, 5);
+    }
+
+    @Override
+    public Figure getFigure() {
+        return rectangle;
     }
 
     @Override

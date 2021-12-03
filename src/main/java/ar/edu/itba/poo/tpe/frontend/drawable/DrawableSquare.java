@@ -9,6 +9,6 @@ public class DrawableSquare extends DrawableRectangle{
         super(square, stroke, fill, lineWidth);
     }
     public DrawableSquare(Square square){
-        this(square, Color.RED, Color.YELLOW, 1);
+        this(square, Color.ORANGE, Color.LIGHTBLUE, 5);
     }
 }
