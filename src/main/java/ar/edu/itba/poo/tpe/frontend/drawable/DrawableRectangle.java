@@ -13,7 +13,7 @@ public class DrawableRectangle extends DrawableFigure{
     }
 
     public DrawableRectangle(Rectangle rectangle){
-        this(rectangle, Color.RED, Color.YELLOW, 1);
+        this(rectangle, Color.ORANGE, Color.LIGHTBLUE, 5);
     }
 
     @Override

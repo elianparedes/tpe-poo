@@ -17,7 +17,7 @@ public class DrawableCircle extends DrawableFigure {
     }
 
     public DrawableCircle(Circle circle){
-        this(circle, Color.RED, Color.YELLOW, 1);
+        this(circle, Color.ORANGE, Color.LIGHTBLUE, 5);
     }
 
     @Override

@@ -25,6 +25,8 @@ public abstract class DrawableFigure {
         gc.setLineWidth(lineWidth);
     }
 
+    public Color getStroke(){return this.stroke;}
+
     public void setFill(Color fill){
         this.fill=fill;
     }
