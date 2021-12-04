@@ -11,23 +11,18 @@ import java.util.Objects;
 public class DrawableLine extends DrawableFigure{
     private Line line;
 
-    public DrawableLine(Line line, Color stroke, Color fill, double lineWidth){
-        super(stroke, fill, lineWidth);
+    public DrawableLine(Line line, Color stroke, double lineWidth){
+        super(stroke, lineWidth);
         this.line=line;
     }
 
     public DrawableLine(Line line){
-        this(line, Color.ORANGE, Color.LIGHTBLUE, 10);
+        this(line, Color.ORANGE,  10);
     }
 
     @Override
     public Figure getFigure() {
         return line;
-    }
-
-    @Override
-    public void fillFigure(GraphicsContext gc) {
-
     }
 
     @Override

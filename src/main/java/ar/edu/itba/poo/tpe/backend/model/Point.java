@@ -48,4 +48,8 @@ public class Point {
         return Objects.hash(x,y);
     }
 
+
+    public boolean isLower(Point point){
+        return x < point.getX() && y < point.getY();
+    }
 }

@@ -8,7 +8,9 @@ import javafx.scene.paint.Color;
 
 import java.util.Objects;
 
-public class DrawableEllipse extends DrawableFigure{
+
+public class DrawableEllipse extends DrawableFigure2D{
+
     private Ellipse ellipse;
 
     public DrawableEllipse(Ellipse ellipse, Color stroke, Color fill, double lineWidth) {

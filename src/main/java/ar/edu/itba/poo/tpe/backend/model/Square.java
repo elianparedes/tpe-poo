@@ -3,8 +3,8 @@ package ar.edu.itba.poo.tpe.backend.model;
 public class Square extends Rectangle{
     private double side;
 
-    public Square(Point topLeft, double side){
-        super(topLeft, new Point(topLeft.getX()+side,topLeft.getY()+side));
+    public Square(Point bottomLeft, double side){
+        super(new Point (bottomLeft.getX(), bottomLeft.getY()), new Point(bottomLeft.getX()+side,bottomLeft.getY()+side));
         this.side=side;
     }
 

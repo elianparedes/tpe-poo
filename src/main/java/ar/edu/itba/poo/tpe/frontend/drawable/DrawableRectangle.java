@@ -8,7 +8,9 @@ import javafx.scene.paint.Color;
 
 import java.util.Objects;
 
-public class DrawableRectangle extends DrawableFigure{
+
+public class DrawableRectangle extends DrawableFigure2D{
+
     private Rectangle rectangle;
     public DrawableRectangle(Rectangle rectangle, Color stroke, Color fill, double lineWidth) {
         super(stroke, fill, lineWidth);
