@@ -19,10 +19,10 @@ public class CanvasPane extends Canvas{
     private Color fillSelectedColor, strokeSelectedColor, selectedFigureColor;
     private double strokeSelectedWidth = 25;
 
-    public CanvasPane(CanvasState canvasState){
+    public CanvasPane(){
         super(800,600);
         this.setCursor(Cursor.CROSSHAIR);
-        this.canvasState = canvasState;
+        this.canvasState = new CanvasState();
     }
 
     public void render() {

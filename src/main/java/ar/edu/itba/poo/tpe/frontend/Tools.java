@@ -1,55 +1,53 @@
 package ar.edu.itba.poo.tpe.frontend;
 
 import ar.edu.itba.poo.tpe.frontend.tools.*;
-import javafx.scene.Cursor;
-import javafx.scene.control.Toggle;
+
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.VBox;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+public class Tools extends VBox {
 
-public class Tools {
-
-    Map<ToggleButton, Tool> tools = new HashMap<>();
-    ToggleButton selection = new ToggleButton("Selección");
-    ToggleButton rectangle = new ToggleButton("Rectángulo");
-    ToggleButton circle = new ToggleButton("Círculo");
-    ToggleButton square = new ToggleButton("Cuadrado");
-    ToggleButton ellipse = new ToggleButton("Elipse");
-    ToggleButton line = new ToggleButton("Línea");
     ToggleGroup toggleGroup = new ToggleGroup();
 
-    public Tools() {
-        tools.put(selection,new SelectionTool());
-        tools.put(rectangle,new RectangleTool());
-        tools.put(circle,new CircleTool());
-        tools.put(square, new SquareTool());
-        tools.put(ellipse, new EllipseTool());
-        tools.put(line, new LineTool());
-        setToggleGroup();
-    }
+    public Tools(CanvasPane canvasPane) {
 
-    public Set<ToggleButton> getToggleSet(){
-        return tools.keySet();
-    }
+        this.setStyle(
+                "-fx-spacing: 10;"
+        );
 
-    public ToggleGroup getToggleGroup(){
-        return toggleGroup;
-    }
+        ToggleButton selection = new ToggleButton("Selección");
+        selection.setUserData(new SelectionTool());
 
-    public Tool getSelectedTool(Toggle selectedToggle){
-        return tools.get(selectedToggle);
-    }
+        ToggleButton rectangle = new ToggleButton("Rectángulo");
+        rectangle.setUserData(new RectangleTool());
 
-    private void setToggleGroup(){
-        Set<ToggleButton> toggleSet = tools.keySet();
-        for (ToggleButton toggle : toggleSet ) {
-            toggle.setStyle("-fx-min-width: 90");
-            toggle.setCursor(Cursor.HAND);
+        ToggleButton circle = new ToggleButton("Círculo");
+        circle.setUserData(new CircleTool());
+
+        ToggleButton square = new ToggleButton("Cuadrado");
+        square.setUserData(new SquareTool());
+
+        ToggleButton ellipse = new ToggleButton("Elipse");
+        ellipse.setUserData(new EllipseTool());
+
+        ToggleButton line = new ToggleButton("Línea");
+        line.setUserData(new LineTool());
+
+        ToggleButton[] toggleButtons = {selection, rectangle, circle, square, ellipse, line};
+
+        for (ToggleButton toggle : toggleButtons ) {
+            toggle.setMinWidth(90);
             toggle.setToggleGroup(toggleGroup);
         }
+
+        toggleGroup.selectedToggleProperty().addListener(e -> {
+            Tool selectedTool = (Tool) toggleGroup.getSelectedToggle().getUserData();
+            selectedTool.action(canvasPane);
+        });
+
+        getChildren().addAll(selection, rectangle, circle, square, ellipse, line);
+
     }
 
 }
