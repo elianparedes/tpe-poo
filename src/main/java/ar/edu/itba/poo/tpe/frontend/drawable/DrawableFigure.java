@@ -6,34 +6,27 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public abstract class DrawableFigure {
-    private Color stroke, fill;
+    private Color stroke;
     private double lineWidth;
 
-    public DrawableFigure(Color stroke, Color fill, double lineWidth){
+    public DrawableFigure(Color stroke, double lineWidth){
         this.stroke=stroke;
-        this.fill=fill;
         this.lineWidth=lineWidth;
     }
 
     public void drawFigure(GraphicsContext gc){
         setGraphicsContext(gc);
-        fillFigure(gc);
         strokeFigure(gc);
     }
 
     protected void setGraphicsContext(GraphicsContext gc){
         gc.setStroke(stroke);
-        gc.setFill(fill);
         gc.setLineWidth(lineWidth);
     }
 
     public Color getStroke(){return this.stroke;}
 
     public abstract Figure getFigure();
-
-    public void setFill(Color fill){
-        this.fill=fill;
-    }
 
     public void setStroke(Color stroke){
         this.stroke=stroke;
@@ -42,8 +35,6 @@ public abstract class DrawableFigure {
     public void setLineWidth(double lineWidth){
         this.lineWidth=lineWidth;
     }
-
-    public abstract void fillFigure(GraphicsContext gc);
 
     public abstract void strokeFigure(GraphicsContext gc);
 

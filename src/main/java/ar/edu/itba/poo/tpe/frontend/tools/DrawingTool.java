@@ -8,7 +8,9 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
 public abstract class DrawingTool extends Tool {
-    private Point startPoint , endPoint;
+    protected static final int DRAWINGTOLERANCE=10;
+    protected Point startPoint , endPoint;
+
     public abstract DrawableFigure createFigure(Point firstPoint, Point secondPoint);
 
     @Override
@@ -29,10 +31,8 @@ public abstract class DrawingTool extends Tool {
     @Override
     public EventHandler<MouseEvent> onMouseReleased() {
         return (e->{
-            /*
-            TODO: Agregar checkeo para que las figuras se dibujen en diagonal derecha abajo
-             */
-            if(startPoint == null || endPoint == null || Double.compare(endPoint.distance(startPoint) , 10) < 0 )
+            if(startPoint == null || endPoint == null || !startPoint.isLower(endPoint) ||
+                    Double.compare(endPoint.distance(startPoint) , DRAWINGTOLERANCE) < 0 )
                 return;
             canvasPane.addFigure(createFigure(startPoint, endPoint));
         });

@@ -6,7 +6,7 @@ import ar.edu.itba.poo.tpe.backend.model.Point;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
-public class DrawableEllipse extends DrawableFigure{
+public class DrawableEllipse extends DrawableFigure2D{
     private Ellipse ellipse;
 
     public DrawableEllipse(Ellipse ellipse, Color stroke, Color fill, double lineWidth) {

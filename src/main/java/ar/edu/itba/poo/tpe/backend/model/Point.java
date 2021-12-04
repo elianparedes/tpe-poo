@@ -31,4 +31,7 @@ public class Point {
         return Math.abs(Math.sqrt((x - point.x)*(x-point.x) + (y - point.y)*(y - point.y)));
     }
 
+    public boolean isLower(Point point){
+        return x < point.getX() && y < point.getY();
+    }
 }
