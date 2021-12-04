@@ -6,6 +6,8 @@ import ar.edu.itba.poo.tpe.backend.model.Point;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+import java.util.Objects;
+
 public class DrawableLine extends DrawableFigure{
     private Line line;
 
@@ -43,4 +45,19 @@ public class DrawableLine extends DrawableFigure{
     public void moveFigure(double deltaX, double deltaY) {
         line.moveFigure(deltaX, deltaY);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj)
+            return true;
+        if(!(obj instanceof DrawableLine that))
+            return false;
+        return this.getFigure().equals(that.getFigure());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getFigure());
+    }
+
 }

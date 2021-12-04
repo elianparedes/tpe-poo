@@ -10,7 +10,6 @@ import javafx.scene.layout.BorderPane;
 public class PaintPane extends BorderPane {
 
     CanvasPane canvasPane;
-    CanvasState canvasState;
 
     ToolsPane toolsPane;
 
@@ -20,7 +19,7 @@ public class PaintPane extends BorderPane {
         this.statusPane = statusPane;
         canvasPane = new CanvasPane();
 
-        canvasState = canvasPane.getCanvasState();
+        CanvasState canvasState = canvasPane.getCanvasState();
 
         canvasPane.setOnMouseMoved(e ->{
             Point point = new Point(e.getX() , e.getY());

@@ -1,6 +1,7 @@
 package ar.edu.itba.poo.tpe.backend.model;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Line extends Figure{
@@ -56,6 +57,21 @@ public class Line extends Figure{
     @Override
     public String toString(){
         return String.format("Línea: [Inicio: %s, Fin: %s]", startPoint, endPoint);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj)
+            return false;
+        if(!(obj instanceof Line that))
+            return false;
+        return (this.startPoint.equals(that.startPoint)) &&
+                (this.endPoint.equals(that.endPoint));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(startPoint,endPoint);
     }
 
 }

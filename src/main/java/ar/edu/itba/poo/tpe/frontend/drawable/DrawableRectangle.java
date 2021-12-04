@@ -6,6 +6,8 @@ import ar.edu.itba.poo.tpe.backend.model.Rectangle;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+import java.util.Objects;
+
 public class DrawableRectangle extends DrawableFigure{
     private Rectangle rectangle;
     public DrawableRectangle(Rectangle rectangle, Color stroke, Color fill, double lineWidth) {
@@ -47,5 +49,20 @@ public class DrawableRectangle extends DrawableFigure{
         gc.strokeRect(topLeft.getX(), topLeft.getY(),
                 Math.abs(topLeft.getX() - bottomRight.getX()), Math.abs(topLeft.getY() - bottomRight.getY()));
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj)
+            return true;
+        if(!(obj instanceof DrawableRectangle that))
+            return false;
+        return this.getFigure().equals(that.getFigure());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getFigure());
+    }
+
 
 }

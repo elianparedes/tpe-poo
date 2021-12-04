@@ -8,7 +8,13 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
 public abstract class DrawingTool extends Tool {
+
     private Point startPoint , endPoint;
+
+    public DrawingTool(CanvasPane canvasPane) {
+        super(canvasPane);
+    }
+
     public abstract DrawableFigure createFigure(Point firstPoint, Point secondPoint);
 
     @Override
