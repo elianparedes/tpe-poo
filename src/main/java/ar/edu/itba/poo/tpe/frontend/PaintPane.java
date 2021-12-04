@@ -18,10 +18,8 @@ public class PaintPane extends BorderPane{
 
     public PaintPane(StatusPane statusPane) {
         this.statusPane = statusPane;
-
-        canvasState = new CanvasState();
-        canvasPane = new CanvasPane(canvasState);
-
+        canvasPane = new CanvasPane();
+        canvasState = canvasPane.getCanvasState();
 
         canvasPane.setOnMouseMoved(e ->{
             Point point = new Point(e.getX() , e.getY());

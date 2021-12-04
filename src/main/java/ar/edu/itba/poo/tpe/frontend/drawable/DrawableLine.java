@@ -36,7 +36,7 @@ public class DrawableLine extends DrawableFigure{
 
     @Override
     public boolean pointBelongs(Point point) {
-        return line.pointBelongs(point);
+        return false;
     }
 
     @Override

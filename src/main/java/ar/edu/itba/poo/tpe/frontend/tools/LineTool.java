@@ -10,4 +10,5 @@ public class LineTool extends DrawingTool{
     public DrawableFigure createFigure(Point firstPoint, Point secondPoint) {
         return new DrawableLine(new Line(firstPoint, secondPoint));
     }
+
 }

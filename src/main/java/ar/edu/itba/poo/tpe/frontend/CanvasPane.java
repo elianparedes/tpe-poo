@@ -15,14 +15,13 @@ import java.util.Arrays;
 public class CanvasPane extends Canvas{
 
     private final GraphicsContext graphicsContext = getGraphicsContext2D();
-    private final CanvasState canvasState;
+    private final CanvasState canvasState = new CanvasState();
     private Color fillSelectedColor, strokeSelectedColor, selectedFigureColor;
     private double strokeSelectedWidth = 25;
 
-    public CanvasPane(CanvasState canvasState){
+    public CanvasPane(){
         super(800,600);
         this.setCursor(Cursor.CROSSHAIR);
-        this.canvasState = canvasState;
     }
 
     public void render() {
