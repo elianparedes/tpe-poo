@@ -16,13 +16,11 @@ public class PaintPane extends BorderPane {
 
     StatusPane statusPane;
 
-    public PaintPane(StatusPane statusPane) {
-        this.statusPane = statusPane;
+    public PaintPane() {
+        statusPane = new StatusPane();
         canvasPane = new CanvasPane();
 
-        canvasState = canvasPane.getCanvasState();
-
-        canvasPane.setOnMouseMoved(e ->{
+        /*canvasPane.setOnMouseMoved(e ->{
             Point point = new Point(e.getX() , e.getY());
             StringBuilder stringBuilder = new StringBuilder();
             statusPane.updateStatus(point.toString());
@@ -32,12 +30,13 @@ public class PaintPane extends BorderPane {
                     statusPane.updateStatus(stringBuilder.toString());
                 }
             }
-        });
+        });*/
 
         toolsPane = new ToolsPane(canvasPane);
 
         setRight(canvasPane);
         setLeft(toolsPane);
+        setBottom(statusPane);
     }
 
 }
