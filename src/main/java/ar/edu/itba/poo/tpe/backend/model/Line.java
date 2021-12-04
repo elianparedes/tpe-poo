@@ -33,7 +33,7 @@ public class Line extends Figure{
 
     @Override
     public boolean pointBelongs(Point point) {
-        return Math.abs((point.getY()-slope*point.getX()))- Math.abs(intercept) <= EPSILON
+        return Math.abs(point.getY()-slope*point.getX()- intercept) <= EPSILON
                 && point.getX() > startPoint.getX() && point.getX() < endPoint.getX();
     }
 

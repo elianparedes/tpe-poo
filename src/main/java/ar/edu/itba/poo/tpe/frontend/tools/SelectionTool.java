@@ -7,17 +7,17 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class SelectionTool extends Tool {
     private DrawableFigure selectedFigure = null;
-    private List<DrawableFigure> selectedFigures = new ArrayList<>();
-    private Point startPoint = null, endPoint = null;
-
-    private boolean selectionActive = false;
     private Color selectedFigureColor;
+    private Map<DrawableFigure,Color> selectedFigures = new HashMap<>();
+    private Point startPoint = null, endPoint = null;
     private Rectangle selectionRectangle;
+    private boolean selectionActive = false;
+
+
 
     private void setSelectedFigure(Point selectPoint) {
         for (DrawableFigure figure : canvasPane.figures()) {
@@ -81,7 +81,7 @@ public class SelectionTool extends Tool {
                         selectedFigure.moveFigure(diffX, diffY);
                     }
                 } else {
-                    for (DrawableFigure figure : selectedFigures) {
+                    for (DrawableFigure figure : selectedFigures.keySet()) {
                         figure.moveFigure(diffX, diffY);
                     }
                 }
@@ -116,7 +116,7 @@ public class SelectionTool extends Tool {
                 selectionRectangle = new Rectangle(startPoint, endPoint);
                 for (DrawableFigure drawableFigure : canvasPane.figures()) {
                     if (selectionRectangle.containsFigure(drawableFigure.getFigure())) {
-                        selectedFigures.add(drawableFigure);
+                        selectedFigures.put(drawableFigure,drawableFigure.getStroke());
                         drawableFigure.setStroke(Color.RED);
                     }
                 }
@@ -143,11 +143,12 @@ public class SelectionTool extends Tool {
                 });
         }
         return (e -> {
-            for (DrawableFigure figure : selectedFigures) {
-                figure.setStroke(Color.BLUEVIOLET);
+            Set<Map.Entry<DrawableFigure,Color>> entrySet = selectedFigures.entrySet();
+            for (Map.Entry<DrawableFigure,Color> entry : entrySet) {
+                entry.getKey().setStroke(entry.getValue());
             }
             canvasPane.render();
-            selectedFigures = new ArrayList<>();
+            selectedFigures = new HashMap<>();
             selectionActive = false;
             action(canvasPane);
         });
