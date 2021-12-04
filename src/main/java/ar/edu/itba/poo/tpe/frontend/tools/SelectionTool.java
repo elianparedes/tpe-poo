@@ -74,8 +74,8 @@ public class SelectionTool extends Tool {
         if (!(selectedFigures.isEmpty()) || (selectedFigure != null)) {
             return (e -> {
                 Point eventPoint = new Point(e.getX(), e.getY());
-                double diffX = (eventPoint.getX() - startPoint.getX());
-                double diffY = (eventPoint.getY() - startPoint.getY());
+
+
                 if (selectedFigure != null) {
                     if (selectedFigure.pointBelongs(startPoint)) {
                         selectedFigure.moveFigure(diffX, diffY);
