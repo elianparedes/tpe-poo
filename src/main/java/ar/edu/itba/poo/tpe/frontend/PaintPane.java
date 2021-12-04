@@ -2,11 +2,12 @@ package ar.edu.itba.poo.tpe.frontend;
 
 import ar.edu.itba.poo.tpe.backend.model.Point;
 import ar.edu.itba.poo.tpe.frontend.drawable.DrawableFigure;
+import ar.edu.itba.poo.tpe.frontend.tools.Tool;
 import javafx.scene.layout.BorderPane;
 
 //TODO: Colocar las funcionalidades de dibujo dentro del CanvasPane.
 
-public class PaintPane extends BorderPane {
+public class PaintPane extends BorderPane{
 
     CanvasState canvasState;
 
@@ -15,11 +16,13 @@ public class PaintPane extends BorderPane {
 
     StatusPane statusPane;
 
-    public PaintPane(CanvasState canvasState, StatusPane statusPane) {
-        this.canvasState = canvasState;
+    public PaintPane(StatusPane statusPane) {
         this.statusPane = statusPane;
 
+        canvasState = new CanvasState();
         canvasPane = new CanvasPane(canvasState);
+
+
         canvasPane.setOnMouseMoved(e ->{
             Point point = new Point(e.getX() , e.getY());
             StringBuilder stringBuilder = new StringBuilder();
@@ -32,9 +35,9 @@ public class PaintPane extends BorderPane {
             }
         });
 
-        toolsPane = new ToolsPane();
+        toolsPane = new ToolsPane(canvasPane);
 
-        toolsPane.setToolsListener(canvasPane);
+        //toolsPane.setMouseEventListener(canvasPane);
 
         setRight(canvasPane);
         setLeft(toolsPane);

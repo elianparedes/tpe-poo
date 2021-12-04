@@ -3,15 +3,17 @@ package ar.edu.itba.poo.tpe.frontend;
 import ar.edu.itba.poo.tpe.frontend.tools.*;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 
 //TODO: Unificar los estilos. Armar una sección de estilos en la parte superior de la class?
 
 public class ToolsPane extends VBox {
 
-    CanvasPane canvasPane;
+    private final CanvasPane canvasPane;
+    private final Tools tools = new Tools();
 
-    public ToolsPane() {
+    public ToolsPane(CanvasPane canvasPane) {
         this.setStyle(
                 "-fx-background-color: #999;" +
                         " -fx-padding: 5;" +
@@ -22,10 +24,9 @@ public class ToolsPane extends VBox {
         this.getChildren().addAll(
                 createToolsModule(),
                 createStrokeModule(),
-                createFillModule());
-    }
+                createFillModule()
+        );
 
-    public void setToolsListener(CanvasPane canvasPane) {
         this.canvasPane = canvasPane;
     }
 
@@ -35,12 +36,14 @@ public class ToolsPane extends VBox {
                 "-fx-spacing: 10;"
         );
 
-        Tools tools = new Tools();
         ToggleGroup toggleGroup = tools.getToggleGroup();
         toggleGroup.selectedToggleProperty().addListener(e -> {
             Toggle selectedToggle = toggleGroup.getSelectedToggle();
-            if (selectedToggle == null)
-                canvasPane.onToolUnselect();
+            if (selectedToggle == null) {
+                canvasPane.setOnMousePressed(null);
+                canvasPane.setOnMouseDragged(null);
+                canvasPane.setOnMouseReleased(null);
+            }
             else{
                 Tool selectedTool = tools.getSelectedTool(selectedToggle);
                 selectedTool.action(canvasPane);

@@ -7,9 +7,12 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 //TODO: Unificar los estilos. Armar una sección de estilos en la parte superior de la class?
 
-public class CanvasPane extends Canvas implements MouseEventListener {
+public class CanvasPane extends Canvas{
 
     private final GraphicsContext graphicsContext = getGraphicsContext2D();
     private final CanvasState canvasState;
@@ -18,8 +21,8 @@ public class CanvasPane extends Canvas implements MouseEventListener {
 
     public CanvasPane(CanvasState canvasState){
         super(800,600);
-        this.canvasState = canvasState;
         this.setCursor(Cursor.CROSSHAIR);
+        this.canvasState = canvasState;
     }
 
     public void render() {
@@ -33,21 +36,17 @@ public class CanvasPane extends Canvas implements MouseEventListener {
         graphicsContext.clearRect(0, 0, this.getWidth(), this.getHeight());
     }
 
+    public void addFigure(DrawableFigure figure){
+        canvasState.addFigure(figure);
+        render();
+    }
+
+    public Iterable<DrawableFigure> figures(){
+        return canvasState.figures();
+    }
+
     public CanvasState getCanvasState() {
         return canvasState;
     }
 
-    @Override
-    public void onToolSelect(Tool tool) {
-        this.setOnMousePressed(tool.getOnMousePressed());
-        this.setOnMouseReleased(tool.getOnMouseRealesed());
-        this.setOnMouseDragged(tool.getOnMouseDragged());
-    }
-
-    @Override
-    public void onToolUnselect() {
-        this.setOnMousePressed(null);
-        this.setOnMouseDragged(null);
-        this.setOnMouseReleased(null);
-    }
 }
