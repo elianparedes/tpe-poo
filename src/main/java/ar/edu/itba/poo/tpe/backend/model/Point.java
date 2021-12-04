@@ -1,5 +1,7 @@
 package ar.edu.itba.poo.tpe.backend.model;
 
+import java.util.Objects;
+
 public class Point {
 
     public double x, y;
@@ -30,6 +32,22 @@ public class Point {
     public double distance(Point point){
         return Math.abs(Math.sqrt((x - point.x)*(x-point.x) + (y - point.y)*(y - point.y)));
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj)
+            return false;
+        if(!(obj instanceof Point that))
+            return false;
+        return (this.x ==that.x) &&
+                (this.y == that.y);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(x,y);
+    }
+
 
     public boolean isLower(Point point){
         return x < point.getX() && y < point.getY();

@@ -1,6 +1,7 @@
 package ar.edu.itba.poo.tpe.backend.model;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Ellipse extends Figure{
@@ -66,5 +67,21 @@ public class Ellipse extends Figure{
     @Override
     public String toString(){
         return String.format("Elipse [Centro: %s, DHoriz: %.2f, DVertical: %.2f]", centerPoint, sHorizontalAxis, sVerticalAxis);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj)
+            return false;
+        if(!(obj instanceof Ellipse that))
+            return false;
+        return (this.centerPoint == that. centerPoint) &&
+                (this.sHorizontalAxis == that.sHorizontalAxis) &&
+                (this.sVerticalAxis == that.sVerticalAxis);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(centerPoint,sHorizontalAxis,sVerticalAxis);
     }
 }

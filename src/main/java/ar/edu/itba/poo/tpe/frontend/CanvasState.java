@@ -1,16 +1,16 @@
 package ar.edu.itba.poo.tpe.frontend;
 
+import ar.edu.itba.poo.tpe.backend.model.Point;
+import ar.edu.itba.poo.tpe.backend.utils.Pair;
 import ar.edu.itba.poo.tpe.frontend.drawable.DrawableFigure;
 import javafx.scene.paint.Color;
-import javafx.util.Pair;
 
 import java.util.*;
 
 public class CanvasState {
 
-    private final List<DrawableFigure> list = new ArrayList<>();
     private final Deque<DrawableFigure> figures = new LinkedList<>();
-    //private final Deque<Pair<DrawableFigure, Color>> selectedFigures = new LinkedList<>();
+    private final Deque<Pair<DrawableFigure, Color>> selectedFigures = new LinkedList<>();
 
     public void addFigure(DrawableFigure figure) {
         figures.add(figure);
@@ -37,36 +37,78 @@ public class CanvasState {
             bringToFront(figure);
     }
 
-    public void deselectAllFigures(){
+    public void unselectAllFigures(){
+        for (Pair<DrawableFigure, Color> selection : selectedFigures )
+            selection.getKey().setStroke(selection.getValue());
         selectedFigures.clear();
+    }
+
+    public void selectFigure(Point point){
+        Iterator<DrawableFigure> it = figures.descendingIterator();
+        while (it.hasNext()) {
+            DrawableFigure figure = it.next();
+            if (figure.pointBelongs(point)) {
+                selectFigure(figure);
+                return;
+            }
+        }
+    }
+
+    public int selectedFiguresCount(){
+        return selectedFigures.size();
+    }
+
+    public void selectFigure(DrawableFigure figure){
+        selectedFigures.add(new Pair<>(figure, figure.getStroke()));
+        figure.setStroke(Color.RED);
+    }
+
+    public void setSelectedFiguresFillColor(Color color){
+        for (Pair<DrawableFigure, Color> selection : selectedFigures ) {
+            //selection.getKey().setFill(color);
+        }
+    }
+
+    public void setSelectedFiguresStrokeColor(Color color){
+        for (Pair<DrawableFigure, Color> selection : selectedFigures) {
+            selection.setValue(color);
+        }
+    }
+
+    public void setSelectedFiguresStrokeWidth(double width){
+        for (Pair<DrawableFigure, Color> selection : selectedFigures) {
+            selection.getKey().setLineWidth(width);
+        }
+    }
+
+    public void selectFigures(Deque<DrawableFigure> figures){
+        for (DrawableFigure figure : figures ) {
+            selectFigure(figure);
+        }
     }
 
     public void removeFigure(DrawableFigure figure){
         figures.remove(figure);
     }
 
-    /*public void selectFigure(DrawableFigure figure){
-        selectedFigures.add(new Pair<>(figure, figure.getStroke()));
-    }*/
-
-    /*public void selectFigures(Deque<DrawableFigure> figures){
-        for (DrawableFigure figure : figures ) {
-            selectFigure(figure);
-        }
-    }*/
-
-    /*public Deque<Pair<DrawableFigure, Color>> getSelectedFigures(){
-        return selectedFigures;
-    }*/
-
-    public Iterable<DrawableFigure> figures() {
-        return new ArrayList<>(figures);
+    public DrawableFigure getSelectedFigure(){
+        return selectedFigures.getFirst().getKey();
     }
 
-    private Map<DrawableFigure, Color> selectedFigures = new HashMap<>();
+    public boolean hasSelectedFigures(){
+        return !selectedFigures.isEmpty();
+    }
 
-    public Map<DrawableFigure, Color> getSelectedFigures(){
-        return selectedFigures;
+    public Deque<DrawableFigure> getSelectedFigures(){
+        Deque<DrawableFigure> selection = new LinkedList<>();
+        for (Pair<DrawableFigure, Color> figure : selectedFigures ) {
+            selection.add(figure.getKey());
+        }
+        return selection;
+    }
+
+    public Deque<DrawableFigure> figures() {
+        return figures;
     }
 
 }

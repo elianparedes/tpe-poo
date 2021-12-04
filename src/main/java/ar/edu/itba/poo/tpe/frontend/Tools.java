@@ -10,29 +10,30 @@ public class Tools extends VBox {
 
     ToggleGroup toggleGroup = new ToggleGroup();
 
-    public Tools(CanvasPane canvasPane) {
 
+    public Tools(CanvasPane canvasPane) {
         this.setStyle(
                 "-fx-spacing: 10;"
         );
 
         ToggleButton selection = new ToggleButton("Selección");
-        selection.setUserData(new SelectionTool());
+        selection.setUserData(new SelectionTool(canvasPane));
+        selection.selectedProperty().addListener(e -> canvasPane.unselectAllFigures());
 
         ToggleButton rectangle = new ToggleButton("Rectángulo");
-        rectangle.setUserData(new RectangleTool());
+        rectangle.setUserData(new RectangleTool(canvasPane));
 
         ToggleButton circle = new ToggleButton("Círculo");
-        circle.setUserData(new CircleTool());
+        circle.setUserData(new CircleTool(canvasPane));
 
         ToggleButton square = new ToggleButton("Cuadrado");
-        square.setUserData(new SquareTool());
+        square.setUserData(new SquareTool(canvasPane));
 
         ToggleButton ellipse = new ToggleButton("Elipse");
-        ellipse.setUserData(new EllipseTool());
+        ellipse.setUserData(new EllipseTool(canvasPane));
 
         ToggleButton line = new ToggleButton("Línea");
-        line.setUserData(new LineTool());
+        line.setUserData(new LineTool(canvasPane));
 
         ToggleButton[] toggleButtons = {selection, rectangle, circle, square, ellipse, line};
 
@@ -42,8 +43,12 @@ public class Tools extends VBox {
         }
 
         toggleGroup.selectedToggleProperty().addListener(e -> {
-            Tool selectedTool = (Tool) toggleGroup.getSelectedToggle().getUserData();
-            selectedTool.action(canvasPane);
+            if(toggleGroup.getSelectedToggle() == null)
+                canvasPane.defaultMouseBehaviour();
+            else {
+                Tool selectedTool = (Tool) toggleGroup.getSelectedToggle().getUserData();
+                selectedTool.action();
+            }
         });
 
         getChildren().addAll(selection, rectangle, circle, square, ellipse, line);

@@ -8,6 +8,10 @@ import ar.edu.itba.poo.tpe.frontend.drawable.DrawableRectangle;
 
 public class RectangleTool extends DrawingTool {
 
+    public RectangleTool(CanvasPane canvasPane) {
+        super(canvasPane);
+    }
+
     @Override
     public DrawableFigure createFigure(Point firstPoint, Point secondPoint) {
         return new DrawableRectangle(new Rectangle(firstPoint, secondPoint));

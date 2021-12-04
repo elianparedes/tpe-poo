@@ -1,6 +1,7 @@
 package ar.edu.itba.poo.tpe.backend.model;
 
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Rectangle extends Figure {
@@ -44,4 +45,20 @@ public class Rectangle extends Figure {
     public String toString() {
         return String.format("Rectángulo: [ %s , %s ]", topLeft, bottomRight);
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(this == obj)
+            return false;
+        if(!(obj instanceof Rectangle that))
+            return false;
+        return (this.bottomRight.equals( that.bottomRight)) &&
+                    (this.topLeft.equals(that.topLeft));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(bottomRight,topLeft);
+    }
+
 }

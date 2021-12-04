@@ -9,8 +9,11 @@ public abstract class Tool {
 
     CanvasPane canvasPane;
 
-    public void action(CanvasPane canvasPane){
+    public Tool(CanvasPane canvasPane) {
         this.canvasPane = canvasPane;
+    }
+
+    public void action(){
         canvasPane.setOnMouseDragged(onMouseDragged());
         canvasPane.setOnMousePressed(onMousePressed());
         canvasPane.setOnMouseReleased(onMouseReleased());
