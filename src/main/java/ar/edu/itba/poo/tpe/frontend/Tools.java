@@ -18,7 +18,10 @@ public class Tools extends VBox {
 
         ToggleButton selection = new ToggleButton("Selección");
         selection.setUserData(new SelectionTool(canvasPane));
-        selection.selectedProperty().addListener(e -> canvasPane.unselectAllFigures());
+        selection.selectedProperty().addListener(e-> {
+                canvasPane.unselectAllFigures();
+        });
+
         ToggleButton rectangle = new ToggleButton("Rectángulo");
         rectangle.setUserData(new RectangleTool(canvasPane));
 
@@ -49,14 +52,14 @@ public class Tools extends VBox {
          de seleccionar
          */
         toggleGroup.selectedToggleProperty().addListener(e -> {
-            if(toggleGroup.getSelectedToggle() == null)
-                canvasPane.defaultMouseBehaviour();
+            if(toggleGroup.getSelectedToggle() == null){
+                canvasPane.defaultMouseBehaviour();}
             else {
                 Tool selectedTool = (Tool) toggleGroup.getSelectedToggle().getUserData();
                 selectedTool.action();
             }
-        });
 
+        });
         getChildren().addAll(selection, rectangle, circle, square, ellipse, line);
 
     }

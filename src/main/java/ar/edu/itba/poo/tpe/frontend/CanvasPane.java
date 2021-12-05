@@ -11,10 +11,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.util.Pair;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Deque;
-import java.util.LinkedList;
+import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 //TODO: Unificar los estilos. Armar una sección de estilos en la parte superior de la class?
 
@@ -89,6 +87,23 @@ public class CanvasPane extends Canvas{
         }
     }
 
+    public void strokePreview(Color color){
+        getCanvasState().setSelectedFiguresStrokeColor(color);
+        /*
+            TODO: Antencion a este comportamiento:
+                Se usa para que al cambiar de color las figuras seleccionadas, el stroke rojo
+                de seleccion tambien cambie, dando al usuario una visualizacion de como quedan los colores
+                ¿Es correcto hacerlo de esta forma?¿Hay que hacerlo de otra?
+                ¿El metodo debe llamarse strokePreview?
+                Este metodo remplaza un llamado original en cual se llamaba a
+                canvasState.setSelectedFiguresStrokeColor(color);
+         */
+        for (DrawableFigure figures: getSelectedFigures()) {
+            figures.setStroke(color);
+        }
+        render();
+    }
+
     public void clear() {
         graphicsContext.clearRect(0, 0, this.getWidth(), this.getHeight());
     }
@@ -98,7 +113,7 @@ public class CanvasPane extends Canvas{
     }
 
     public void defaultMouseBehaviour(){
-        this.setOnMouseClicked(null);
+        this.setOnMousePressed(null);
         this.setOnMouseDragged(null);
         this.setOnMouseReleased(null);
     }

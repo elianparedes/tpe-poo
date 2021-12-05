@@ -1,6 +1,8 @@
 package ar.edu.itba.poo.tpe.frontend;
 
+import ar.edu.itba.poo.tpe.frontend.actions.BackAction;
 import ar.edu.itba.poo.tpe.frontend.actions.DeleteAction;
+import ar.edu.itba.poo.tpe.frontend.actions.FrontAction;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
@@ -19,18 +21,18 @@ public class Actions extends VBox {
             deleteAction.action(canvasPane);
         });
 
-        //FrontAction frontAction = new FrontAction();
+        FrontAction frontAction = new FrontAction();
         Button front = new Button("Al frente");
         front.setMinWidth(90);
         front.setOnAction(e -> {
-            //frontAction.action(canvasPane);
+            frontAction.action(canvasPane);
         });
 
-        //BackAction backAction = new BackAction();
+        BackAction backAction = new BackAction();
         Button back = new Button("Al fondo");
         back.setMinWidth(90);
         back.setOnAction(e -> {
-            //backAction.action(canvasPane);
+            backAction.action(canvasPane);
         });
 
         getChildren().addAll(delete,front,back);

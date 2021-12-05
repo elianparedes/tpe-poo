@@ -5,6 +5,8 @@ import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 
+import java.util.concurrent.TimeUnit;
+
 public class StrokePicker extends Picker{
 
     public StrokePicker(CanvasPane canvasPane){
@@ -13,6 +15,6 @@ public class StrokePicker extends Picker{
 
     @Override
     public void action(Color color) {
-        canvasPane.getCanvasState().setSelectedFiguresStrokeColor(color);
+        canvasPane.strokePreview(color);
     }
 }

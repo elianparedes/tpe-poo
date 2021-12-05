@@ -3,10 +3,16 @@ package ar.edu.itba.poo.tpe.frontend;
 import ar.edu.itba.poo.tpe.frontend.pickers.FillPicker;
 import ar.edu.itba.poo.tpe.frontend.pickers.Picker;
 import ar.edu.itba.poo.tpe.frontend.pickers.StrokePicker;
+import javafx.beans.InvalidationListener;
+import javafx.event.EventType;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+
+import java.util.Timer;
+import java.util.concurrent.TimeUnit;
 
 public class Controls extends VBox {
 
@@ -31,7 +37,7 @@ public class Controls extends VBox {
 
         strokeColorPicker.setOnAction(e -> {
             strokePicker.action(strokeColorPicker.getValue());
-            canvasPane.render();
+
         });
 
         Label fillTitle = new Label("Relleno");
