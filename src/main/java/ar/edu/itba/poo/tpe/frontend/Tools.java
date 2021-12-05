@@ -19,7 +19,6 @@ public class Tools extends VBox {
         ToggleButton selection = new ToggleButton("Selección");
         selection.setUserData(new SelectionTool(canvasPane));
         selection.selectedProperty().addListener(e -> canvasPane.unselectAllFigures());
-
         ToggleButton rectangle = new ToggleButton("Rectángulo");
         rectangle.setUserData(new RectangleTool(canvasPane));
 
@@ -42,6 +41,13 @@ public class Tools extends VBox {
             toggle.setToggleGroup(toggleGroup);
         }
 
+        /*
+        TODO: Por alguna razon, al desactivar la herramienta seleccion, me permite seguir moviendo figuras
+         Notar que la misma esta desactivada pero permanece con un rectangulo azul en su borde, lo cual me hace pensar
+         que esto indica de alguna mnaera que esta seleccionada
+         Si uno presiona el boton de rectangulo, luego lo deselecciona, vera que no se puede usar el comprotamiento
+         de seleccionar
+         */
         toggleGroup.selectedToggleProperty().addListener(e -> {
             if(toggleGroup.getSelectedToggle() == null)
                 canvasPane.defaultMouseBehaviour();

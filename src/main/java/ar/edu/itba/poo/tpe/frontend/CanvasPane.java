@@ -98,8 +98,8 @@ public class CanvasPane extends Canvas{
     }
 
     public void defaultMouseBehaviour(){
-        setOnMouseClicked(null);
-        setOnMouseDragged(null);
-        setOnMouseReleased(null);
+        this.setOnMouseClicked(null);
+        this.setOnMouseDragged(null);
+        this.setOnMouseReleased(null);
     }
 }

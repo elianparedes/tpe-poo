@@ -8,8 +8,7 @@ import java.util.Set;
 public class DeleteAction extends Action{
     @Override
     public void action(CanvasPane canvasPane) {
-        /*Set<DrawableFigure> selectedFigures = canvasPane.getCanvasState().getSelectedFigures().keySet();
-        canvasPane.getCanvasState().deleteAll(selectedFigures);
-        canvasPane.render();*/
+        canvasPane.getCanvasState().removeSelectedFigures();
+        canvasPane.render();
     }
 }

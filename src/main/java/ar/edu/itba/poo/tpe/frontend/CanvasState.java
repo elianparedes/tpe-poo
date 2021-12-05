@@ -63,6 +63,13 @@ public class CanvasState {
         figure.setStroke(Color.RED);
     }
 
+    public void removeSelectedFigures(){
+        for (Pair<DrawableFigure,Color> selectedFigure: selectedFigures) {
+            figures.remove(selectedFigure.getKey());
+        }
+        selectedFigures.clear();
+    }
+
     public void setSelectedFiguresFillColor(Color color){
         for (Pair<DrawableFigure, Color> selection : selectedFigures ) {
             //selection.getKey().setFill(color);
