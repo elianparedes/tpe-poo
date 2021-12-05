@@ -11,10 +11,8 @@ import java.util.Objects;
 
 public class DrawableRectangle extends DrawableFigure2D{
 
-    private Rectangle rectangle;
     public DrawableRectangle(Rectangle rectangle, Color stroke, Color fill, double lineWidth) {
-        super(stroke, fill, lineWidth);
-        this.rectangle=rectangle;
+        super(rectangle, stroke, fill, lineWidth);
     }
 
     public DrawableRectangle(Rectangle rectangle){
@@ -22,22 +20,18 @@ public class DrawableRectangle extends DrawableFigure2D{
     }
 
     @Override
-    public Figure getFigure() {
-        return rectangle;
-    }
-
-    @Override
     public boolean pointBelongs(Point point) {
-        return rectangle.pointBelongs(point);
+        return getFigure().pointBelongs(point);
     }
 
     @Override
     public void moveFigure(double deltaX, double deltaY) {
-        rectangle.moveFigure(deltaX, deltaY);
+        getFigure().moveFigure(deltaX, deltaY);
     }
 
     @Override
     public void fillFigure(GraphicsContext gc) {
+        Rectangle rectangle = (Rectangle) getFigure();
         Point topLeft= rectangle.getTopLeft();
         Point bottomRight=rectangle.getBottomRight();
         gc.fillRect(topLeft.getX(), topLeft.getY(),
@@ -46,6 +40,7 @@ public class DrawableRectangle extends DrawableFigure2D{
 
     @Override
     public void strokeFigure(GraphicsContext gc) {
+        Rectangle rectangle = (Rectangle) getFigure();
         Point topLeft= rectangle.getTopLeft();
         Point bottomRight=rectangle.getBottomRight();
         gc.strokeRect(topLeft.getX(), topLeft.getY(),

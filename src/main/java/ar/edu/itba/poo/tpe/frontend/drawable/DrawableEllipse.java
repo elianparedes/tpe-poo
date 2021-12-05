@@ -11,11 +11,9 @@ import java.util.Objects;
 
 public class DrawableEllipse extends DrawableFigure2D{
 
-    private Ellipse ellipse;
 
     public DrawableEllipse(Ellipse ellipse, Color stroke, Color fill, double lineWidth) {
-        super(stroke, fill, lineWidth);
-        this.ellipse=ellipse;
+        super(ellipse, stroke, fill, lineWidth);
     }
 
     public DrawableEllipse(Ellipse ellipse){
@@ -23,22 +21,18 @@ public class DrawableEllipse extends DrawableFigure2D{
     }
 
     @Override
-    public Figure getFigure() {
-        return ellipse;
-    }
-
-    @Override
     public void moveFigure(double deltaX, double deltaY) {
-        ellipse.moveFigure(deltaX, deltaY);
+        getFigure().moveFigure(deltaX, deltaY);
     }
 
     @Override
     public boolean pointBelongs(Point point) {
-        return ellipse.pointBelongs(point);
+        return getFigure().pointBelongs(point);
     }
 
     @Override
     public void fillFigure(GraphicsContext gc) {
+        Ellipse ellipse= (Ellipse) getFigure();
         double sHa=ellipse.getsHorizontalAxis();
         double sVa=ellipse.getsVerticalAxis();
         Point centerPoint=ellipse.getCenterPoint();
@@ -47,6 +41,7 @@ public class DrawableEllipse extends DrawableFigure2D{
 
     @Override
     public void strokeFigure(GraphicsContext gc) {
+        Ellipse ellipse= (Ellipse) getFigure();
         double sHa=ellipse.getsHorizontalAxis();
         double sVa=ellipse.getsVerticalAxis();
         Point centerPoint=ellipse.getCenterPoint();

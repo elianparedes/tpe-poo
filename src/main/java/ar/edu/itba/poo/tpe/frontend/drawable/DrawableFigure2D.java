@@ -1,13 +1,14 @@
 package ar.edu.itba.poo.tpe.frontend.drawable;
 
+import ar.edu.itba.poo.tpe.backend.model.Figure;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
 public abstract class DrawableFigure2D extends DrawableFigure{
     private Color fill;
 
-    public DrawableFigure2D(Color stroke, Color fill, double lineWidth){
-        super(stroke,lineWidth);
+    public DrawableFigure2D(Figure figure, Color stroke, Color fill, double lineWidth){
+        super(figure, stroke,lineWidth);
         this.fill=fill;
     }
 
@@ -21,6 +22,10 @@ public abstract class DrawableFigure2D extends DrawableFigure{
     protected void setGraphicsContext(GraphicsContext gc){
         super.setGraphicsContext(gc);
         gc.setFill(fill);
+    }
+
+    public boolean hasFill(){
+        return true;
     }
 
     public Color getFill(){

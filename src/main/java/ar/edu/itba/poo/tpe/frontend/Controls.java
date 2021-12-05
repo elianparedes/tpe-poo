@@ -1,5 +1,8 @@
 package ar.edu.itba.poo.tpe.frontend;
 
+import ar.edu.itba.poo.tpe.frontend.pickers.FillPicker;
+import ar.edu.itba.poo.tpe.frontend.pickers.Picker;
+import ar.edu.itba.poo.tpe.frontend.pickers.StrokePicker;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
@@ -14,25 +17,33 @@ public class Controls extends VBox {
         );
 
         Label strokeTitle = new Label("Borde");
+        Slider strokeSlider = new Slider(1, 20, 10);
 
-        Slider strokeSlider = new Slider(1, 50, 25);
         strokeSlider.setShowTickMarks(true);
         strokeSlider.setShowTickLabels(true);
         strokeSlider.setOnMouseReleased(e -> {
-            //toolsListener.onStrokeWidthSelect(strokeSlider.getValue());
+           canvasPane.getCanvasState().setSelectedFiguresStrokeWidth(strokeSlider.getValue());
+           canvasPane.render();
         });
 
-        ColorPicker strokeColorPicker = new ColorPicker();
+        ColorPicker strokeColorPicker = new ColorPicker(); //Si le pongo clase
+        StrokePicker strokePicker= new StrokePicker(canvasPane);
+
         strokeColorPicker.setOnAction(e -> {
-            // toolsListener.onStrokeColorSelect(strokeColorPicker.getValue());
+            strokePicker.action(strokeColorPicker.getValue());
+            canvasPane.render();
         });
 
         Label fillTitle = new Label("Relleno");
-
         ColorPicker fillColorPicker = new ColorPicker();
+        FillPicker fillPicker = new FillPicker(canvasPane);
+
         fillColorPicker.setOnAction(e -> {
-            //toolsListener.onFillColorSelect(fillColorPicker.getValue());
+            fillPicker.action(fillColorPicker.getValue());
+            canvasPane.render();
         });
+
+
 
         getChildren().addAll(strokeTitle, strokeSlider, strokeColorPicker, fillTitle, fillColorPicker);
     }

@@ -8,8 +8,10 @@ import javafx.scene.paint.Color;
 public abstract class DrawableFigure {
     private Color stroke;
     private double lineWidth;
+    private Figure figure;
 
-    public DrawableFigure(Color stroke, double lineWidth){
+    public DrawableFigure(Figure figure, Color stroke, double lineWidth){
+        this.figure=figure;
         this.stroke=stroke;
         this.lineWidth=lineWidth;
     }
@@ -26,15 +28,19 @@ public abstract class DrawableFigure {
 
     public Color getStroke(){return this.stroke;}
 
-    public abstract Figure getFigure();
+    public Figure getFigure() {
+        return figure;
+    }
 
     public void setStroke(Color stroke){
+
         this.stroke=stroke;
     }
 
     public void setLineWidth(double lineWidth){
         this.lineWidth=lineWidth;
     }
+    public abstract boolean hasFill();
 
     public abstract void strokeFigure(GraphicsContext gc);
 

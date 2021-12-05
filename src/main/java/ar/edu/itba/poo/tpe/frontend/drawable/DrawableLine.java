@@ -9,24 +9,22 @@ import javafx.scene.paint.Color;
 import java.util.Objects;
 
 public class DrawableLine extends DrawableFigure{
-    private Line line;
 
     public DrawableLine(Line line, Color stroke, double lineWidth){
-        super(stroke, lineWidth);
-        this.line=line;
+        super(line, stroke, lineWidth);
     }
 
     public DrawableLine(Line line){
         this(line, Color.ORANGE,  10);
     }
 
-    @Override
-    public Figure getFigure() {
-        return line;
+    public boolean hasFill(){
+        return false;
     }
 
     @Override
     public void strokeFigure(GraphicsContext gc) {
+        Line line= (Line) getFigure();
         gc.strokeLine(line.getStartPoint().getX(), line.getStartPoint().getY(),
                 line.getEndPoint().getX(), line.getEndPoint().getY());
     }
@@ -38,7 +36,7 @@ public class DrawableLine extends DrawableFigure{
 
     @Override
     public void moveFigure(double deltaX, double deltaY) {
-        line.moveFigure(deltaX, deltaY);
+        getFigure().moveFigure(deltaX, deltaY);
     }
 
     @Override

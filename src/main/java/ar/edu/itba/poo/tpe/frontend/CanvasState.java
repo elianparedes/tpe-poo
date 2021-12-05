@@ -3,6 +3,7 @@ package ar.edu.itba.poo.tpe.frontend;
 import ar.edu.itba.poo.tpe.backend.model.Point;
 import ar.edu.itba.poo.tpe.backend.utils.Pair;
 import ar.edu.itba.poo.tpe.frontend.drawable.DrawableFigure;
+import ar.edu.itba.poo.tpe.frontend.drawable.DrawableFigure2D;
 import javafx.scene.paint.Color;
 
 import java.util.*;
@@ -21,7 +22,7 @@ public class CanvasState {
         figures.addFirst(figure);
     }
 
-    public void sendToBack(Deque<DrawableFigure> figures){
+    public void sendToBack(Deque<DrawableFigure> figures) {
         Iterator<DrawableFigure> it = figures.descendingIterator();
         while (it.hasNext())
             sendToBack(it.next());
@@ -32,18 +33,18 @@ public class CanvasState {
         figures.addLast(figure);
     }
 
-    public void bringToFront(Deque<DrawableFigure> figures){
+    public void bringToFront(Deque<DrawableFigure> figures) {
         for (DrawableFigure figure : figures)
             bringToFront(figure);
     }
 
-    public void unselectAllFigures(){
-        for (Pair<DrawableFigure, Color> selection : selectedFigures )
+    public void unselectAllFigures() {
+        for (Pair<DrawableFigure, Color> selection : selectedFigures)
             selection.getKey().setStroke(selection.getValue());
         selectedFigures.clear();
     }
 
-    public void selectFigure(Point point){
+    public void selectFigure(Point point) {
         Iterator<DrawableFigure> it = figures.descendingIterator();
         while (it.hasNext()) {
             DrawableFigure figure = it.next();
@@ -54,25 +55,28 @@ public class CanvasState {
         }
     }
 
-    public int selectedFiguresCount(){
+    public int selectedFiguresCount() {
         return selectedFigures.size();
     }
 
-    public void selectFigure(DrawableFigure figure){
+    public void selectFigure(DrawableFigure figure) {
         selectedFigures.add(new Pair<>(figure, figure.getStroke()));
         figure.setStroke(Color.RED);
     }
 
-    public void removeSelectedFigures(){
-        for (Pair<DrawableFigure,Color> selectedFigure: selectedFigures) {
+    public void removeSelectedFigures() {
+        for (Pair<DrawableFigure, Color> selectedFigure : selectedFigures) {
             figures.remove(selectedFigure.getKey());
         }
         selectedFigures.clear();
     }
 
-    public void setSelectedFiguresFillColor(Color color){
-        for (Pair<DrawableFigure, Color> selection : selectedFigures ) {
-            //selection.getKey().setFill(color);
+    public void setSelectedFiguresFillColor(Color color) {
+        for (Pair<DrawableFigure, Color> selection : selectedFigures) {
+            if (selection.getKey().hasFill()) {
+                ((DrawableFigure2D) selection.getKey()).setFill(color); //TODO: Ver este casteo
+            }
+
         }
     }
 
