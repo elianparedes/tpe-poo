@@ -1,6 +1,6 @@
 package ar.edu.itba.poo.tpe.frontend.pickers;
 
-import ar.edu.itba.poo.tpe.frontend.CanvasPane;
+import ar.edu.itba.poo.tpe.frontend.pane.CanvasPane;
 import javafx.scene.paint.Color;
 
 public class FillPicker extends Picker{
@@ -11,6 +11,7 @@ public class FillPicker extends Picker{
 
     @Override
     public void action(Color color) {
-        canvasPane.getCanvasState().setSelectedFiguresFillColor(color);
+        canvasPane.setSelectedFillColor(color);
+        canvasPane.getCanvasState().setSelectedFiguresFillColor(color.toString());
     }
 }

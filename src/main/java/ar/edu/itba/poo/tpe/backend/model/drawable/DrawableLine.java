@@ -1,32 +1,18 @@
-package ar.edu.itba.poo.tpe.frontend.drawable;
+package ar.edu.itba.poo.tpe.backend.model.drawable;
 
-import ar.edu.itba.poo.tpe.backend.model.Figure;
 import ar.edu.itba.poo.tpe.backend.model.Line;
 import ar.edu.itba.poo.tpe.backend.model.Point;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 
 import java.util.Objects;
 
-public class DrawableLine extends DrawableFigure{
+public class DrawableLine extends DrawableFigure {
 
-    public DrawableLine(Line line, Color stroke, double lineWidth){
-        super(line, stroke, lineWidth);
-    }
-
-    public DrawableLine(Line line){
-        this(line, Color.ORANGE,  10);
+    public DrawableLine(Line line, String strokeColor, double lineWidth){
+        super(line, strokeColor, lineWidth);
     }
 
     public boolean hasFill(){
         return false;
-    }
-
-    @Override
-    public void strokeFigure(GraphicsContext gc) {
-        Line line= (Line) getFigure();
-        gc.strokeLine(line.getStartPoint().getX(), line.getStartPoint().getY(),
-                line.getEndPoint().getX(), line.getEndPoint().getY());
     }
 
     @Override

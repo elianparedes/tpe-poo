@@ -1,16 +1,15 @@
 package ar.edu.itba.poo.tpe.frontend.tools;
 
 import ar.edu.itba.poo.tpe.backend.model.Point;
-import ar.edu.itba.poo.tpe.frontend.CanvasPane;
-import ar.edu.itba.poo.tpe.frontend.CanvasState;
-import ar.edu.itba.poo.tpe.frontend.drawable.DrawableFigure;
+import ar.edu.itba.poo.tpe.frontend.pane.CanvasPane;
+import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableFigure;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
 public abstract class DrawingTool extends Tool {
 
+    protected static final int DRAWING_TOLERANCE =10;
     protected Point startPoint , endPoint;
-    protected static final int DRAWINGTOLERANCE=10;
 
     public DrawingTool(CanvasPane canvasPane) {
         super(canvasPane);
@@ -37,9 +36,10 @@ public abstract class DrawingTool extends Tool {
     public EventHandler<MouseEvent> onMouseReleased() {
         return (e->{
             if(startPoint == null || endPoint == null || !startPoint.isLower(endPoint) ||
-                    Double.compare(endPoint.distance(startPoint) , DRAWINGTOLERANCE) < 0 )
+                    Double.compare(endPoint.distance(startPoint) , DRAWING_TOLERANCE) < 0 )
                 return;
-            canvasPane.addFigure(createFigure(startPoint, endPoint));
+            canvasPane.getCanvasState().addFigure(createFigure(startPoint, endPoint));
         });
     }
+
 }

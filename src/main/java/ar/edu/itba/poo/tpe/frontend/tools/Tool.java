@@ -1,16 +1,18 @@
 package ar.edu.itba.poo.tpe.frontend.tools;
 
-import ar.edu.itba.poo.tpe.frontend.CanvasPane;
-import ar.edu.itba.poo.tpe.frontend.CanvasState;
+import ar.edu.itba.poo.tpe.frontend.pane.CanvasPane;
 import javafx.event.EventHandler;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 
 public abstract class Tool {
 
-    CanvasPane canvasPane;
+    protected final CanvasPane canvasPane;
+    protected final GraphicsContext graphicsContext;
 
     public Tool(CanvasPane canvasPane) {
         this.canvasPane = canvasPane;
+        this.graphicsContext = canvasPane.getGraphicsContext();
     }
 
     public void action(){

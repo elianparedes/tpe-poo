@@ -1,4 +1,4 @@
-package ar.edu.itba.poo.tpe.frontend;
+package ar.edu.itba.poo.tpe.frontend.pane;
 
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
@@ -14,6 +14,7 @@ public class StatusPane extends BorderPane {
 		statusLabel.setAlignment(Pos.CENTER);
 		statusLabel.setStyle("-fx-font-size: 16");
 		setCenter(statusLabel);
+
 	}
 	
 	public void updateStatus(String text) {

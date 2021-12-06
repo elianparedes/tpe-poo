@@ -1,8 +1,6 @@
-package ar.edu.itba.poo.tpe.frontend;
+package ar.edu.itba.poo.tpe.frontend.actions;
 
-import ar.edu.itba.poo.tpe.frontend.actions.BackAction;
-import ar.edu.itba.poo.tpe.frontend.actions.DeleteAction;
-import ar.edu.itba.poo.tpe.frontend.actions.FrontAction;
+import ar.edu.itba.poo.tpe.frontend.pane.CanvasPane;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 

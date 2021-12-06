@@ -1,16 +1,11 @@
-package ar.edu.itba.poo.tpe.frontend;
+package ar.edu.itba.poo.tpe.frontend.pane;
 
-import ar.edu.itba.poo.tpe.frontend.tools.*;
-import javafx.scene.Node;
-import javafx.scene.control.*;
-import javafx.scene.input.MouseEvent;
+import ar.edu.itba.poo.tpe.frontend.actions.Actions;
+import ar.edu.itba.poo.tpe.frontend.pickers.Pickers;
+import ar.edu.itba.poo.tpe.frontend.tools.Tools;
 import javafx.scene.layout.VBox;
 
-//TODO: Unificar los estilos. Armar una sección de estilos en la parte superior de la class?
-
 public class ToolsPane extends VBox {
-
-    private final CanvasPane canvasPane;
 
     public ToolsPane(CanvasPane canvasPane) {
 
@@ -21,12 +16,10 @@ public class ToolsPane extends VBox {
                         " -fx-pref-width: 100"
         );
 
-        this.canvasPane = canvasPane;
-
         this.getChildren().addAll(
                 new Tools(canvasPane),
                 new Actions(canvasPane),
-                new Controls(canvasPane)
+                new Pickers(canvasPane)
         );
 
     }
