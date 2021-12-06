@@ -21,8 +21,15 @@ public class RectangleTool extends DrawingTool {
                 canvasPane.getSelectedStrokeWidth()
         );
 
-        figure.setDrawingFunction(() -> { //TODO: Ver casteo y repetición de código
-            Rectangle rectangle = (Rectangle) figure.getFigure();
+        setDrawingFunction(figure);
+
+        return figure;
+    }
+
+    @Override
+    public void setDrawingFunction(DrawableFigure drawableFigure) {
+        Rectangle rectangle = (Rectangle) drawableFigure.getFigure();
+        drawableFigure.setDrawingFunction(() -> {
             graphicsContext.fillRect(
                     rectangle.getTopLeft().getX(),
                     rectangle.getTopLeft().getY(),
@@ -36,8 +43,6 @@ public class RectangleTool extends DrawingTool {
                     Math.abs(rectangle.getTopLeft().getY() - rectangle.getBottomRight().getY())
             );
         });
-
-        return figure;
     }
 
 }

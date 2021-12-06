@@ -21,8 +21,15 @@ public class LineTool extends DrawingTool{
                 canvasPane.getSelectedStrokeWidth()
         );
 
-        figure.setDrawingFunction(() -> {
-            Line line = (Line) figure.getFigure();
+        setDrawingFunction(figure);
+
+        return figure;
+    }
+
+    @Override
+    public void setDrawingFunction(DrawableFigure drawableFigure) {
+        drawableFigure.setDrawingFunction(() -> {
+            Line line = (Line) drawableFigure.getFigure();
             graphicsContext.strokeLine(
                     line.getStartPoint().getX(),
                     line.getStartPoint().getY(),
@@ -30,8 +37,6 @@ public class LineTool extends DrawingTool{
                     line.getEndPoint().getY()
             );
         });
-
-        return figure;
     }
 
     @Override

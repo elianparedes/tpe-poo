@@ -17,6 +17,8 @@ public abstract class DrawingTool extends Tool {
 
     public abstract DrawableFigure createFigure(Point firstPoint, Point secondPoint);
 
+    public abstract void setDrawingFunction(DrawableFigure drawableFigure);
+
     @Override
     public EventHandler<MouseEvent> onMousePressed() {
         return (e -> {

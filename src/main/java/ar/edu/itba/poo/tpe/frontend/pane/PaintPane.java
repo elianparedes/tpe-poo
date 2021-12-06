@@ -6,9 +6,8 @@ import javafx.scene.layout.BorderPane;
 public class PaintPane extends BorderPane {
 
     CanvasState canvasState;
-
     CanvasPane canvasPane;
-    ToolsPane toolsPane;
+    ToolsPane sidePane;
     StatusPane statusPane;
 
     public PaintPane(CanvasState canvasState) {
@@ -17,10 +16,10 @@ public class PaintPane extends BorderPane {
         statusPane = new StatusPane();
         canvasPane = new CanvasPane(canvasState);
 
-        toolsPane = new ToolsPane(canvasPane);
+        sidePane = new ToolsPane(canvasPane);
 
         setRight(canvasPane);
-        setLeft(toolsPane);
+        setLeft(sidePane);
         setBottom(statusPane);
     }
 

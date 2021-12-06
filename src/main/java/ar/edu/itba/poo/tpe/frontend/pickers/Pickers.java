@@ -1,6 +1,8 @@
 package ar.edu.itba.poo.tpe.frontend.pickers;
 
 import ar.edu.itba.poo.tpe.backend.CanvasState;
+import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableFigure;
+import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableFigure2D;
 import ar.edu.itba.poo.tpe.frontend.pane.CanvasPane;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
@@ -58,7 +60,7 @@ public class Pickers extends VBox {
             fillPicker.action(fillColorPicker.getValue());
         });
 
-        /*canvasState.addStateListener(() -> {
+        canvasState.addStateListener(() -> {
             if (canvasState.hasSelectedFigures()) {
                 for (DrawableFigure figure : canvasState.getSelectedFigures()) {
                     if (figure.hasFill())
@@ -67,7 +69,7 @@ public class Pickers extends VBox {
                     strokeSlider.setValue(figure.getStrokeWidth());
                 }
             }
-        });*/
+        });
 
         getChildren().addAll(strokeTitle, strokeSlider, strokeColorPicker, fillTitle, fillColorPicker);
     }

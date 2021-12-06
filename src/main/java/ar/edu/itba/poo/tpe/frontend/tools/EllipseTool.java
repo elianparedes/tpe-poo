@@ -26,20 +26,27 @@ public class EllipseTool extends DrawingTool {
                 canvasPane.getSelectedStrokeWidth()
         );
 
-        Ellipse ellipse = (Ellipse) figure.getFigure();
-        figure.setDrawingFunction(() -> {
-            graphicsContext.fillOval(ellipse.getCenterPoint().getX() - hAxis,
-                    ellipse.getCenterPoint().getY() - vAxis,
-                    hAxis * 2,
-                    vAxis * 2
-            );
-            graphicsContext.strokeOval(ellipse.getCenterPoint().getX() - hAxis,
-                    ellipse.getCenterPoint().getY() - vAxis,
-                    hAxis * 2,
-                    vAxis * 2)
-            ;
-        });
+        setDrawingFunction(figure);
 
         return figure;
+    }
+
+    @Override
+    public void setDrawingFunction(DrawableFigure drawableFigure) {
+        Ellipse ellipse = (Ellipse) drawableFigure.getFigure();
+        drawableFigure.setDrawingFunction(() -> {
+            graphicsContext.fillOval(
+                    ellipse.getCenterPoint().getX() - ellipse.getsHorizontalAxis(),
+                    ellipse.getCenterPoint().getY() - ellipse.getsVerticalAxis(),
+                    ellipse.getsHorizontalAxis() * 2,
+                    ellipse.getsVerticalAxis() * 2
+            );
+            graphicsContext.strokeOval(
+                    ellipse.getCenterPoint().getX() - ellipse.getsHorizontalAxis(),
+                    ellipse.getCenterPoint().getY() - ellipse.getsVerticalAxis(),
+                    ellipse.getsHorizontalAxis() * 2,
+                    ellipse.getsVerticalAxis() * 2)
+            ;
+        });
     }
 }

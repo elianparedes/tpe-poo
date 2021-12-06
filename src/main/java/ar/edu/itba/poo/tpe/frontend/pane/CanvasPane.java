@@ -28,7 +28,6 @@ public class CanvasPane extends Canvas implements StateListener {
         canvasState.addStateListener(this);
     }
 
-
     public void render() {
         graphicsContext.clearRect(0, 0, this.getWidth(), this.getHeight());
         for (DrawableFigure drawableFigure : canvasState.getFigures()) {
@@ -54,10 +53,8 @@ public class CanvasPane extends Canvas implements StateListener {
 
     public void strokeColorPreview(String color){
         inSelectionPreview = true;
-        graphicsContext.setStroke(Color.valueOf(color));
         canvasState.setSelectedFiguresStrokeColor(color);
     }
-
 
     public void defaultMouseBehaviour(){
         this.setOnMousePressed(null);

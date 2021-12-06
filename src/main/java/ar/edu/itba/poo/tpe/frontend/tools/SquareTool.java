@@ -7,7 +7,7 @@ import ar.edu.itba.poo.tpe.frontend.pane.CanvasPane;
 import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableFigure;
 import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableSquare;
 
-public class SquareTool extends DrawingTool {
+public class SquareTool extends RectangleTool {
     public SquareTool(CanvasPane canvasPane) {
         super(canvasPane);
     }
@@ -21,21 +21,7 @@ public class SquareTool extends DrawingTool {
                 canvasPane.getSelectedStrokeWidth()
         );
 
-        figure.setDrawingFunction(() -> {
-            Rectangle rectangle = (Rectangle) figure.getFigure();
-            graphicsContext.fillRect(
-                    rectangle.getTopLeft().getX(),
-                    rectangle.getTopLeft().getY(),
-                    Math.abs(rectangle.getTopLeft().getX() - rectangle.getBottomRight().getX()),
-                    Math.abs(rectangle.getTopLeft().getY() - rectangle.getBottomRight().getY())
-            );
-            graphicsContext.strokeRect(
-                    rectangle.getTopLeft().getX(),
-                    rectangle.getTopLeft().getY(),
-                    Math.abs(rectangle.getTopLeft().getX() - rectangle.getBottomRight().getX()),
-                    Math.abs(rectangle.getTopLeft().getY() - rectangle.getBottomRight().getY())
-            );
-        });
+        setDrawingFunction(figure);
 
         return figure;
     }
