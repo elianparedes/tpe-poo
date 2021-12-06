@@ -7,7 +7,7 @@ import javafx.scene.layout.VBox;
 
 public class ToolsPane extends VBox {
 
-    public ToolsPane(CanvasPane canvasPane) {
+    public ToolsPane(CanvasPane canvasPane, StatusPane statusPane) {
 
         this.setStyle(
                 "-fx-background-color: #999;" +
@@ -17,9 +17,9 @@ public class ToolsPane extends VBox {
         );
 
         this.getChildren().addAll(
-                new Tools(canvasPane),
-                new Actions(canvasPane),
-                new Pickers(canvasPane)
+                new Tools(canvasPane, statusPane),
+                new Actions(canvasPane, statusPane),
+                new Pickers(canvasPane, statusPane)
         );
 
     }

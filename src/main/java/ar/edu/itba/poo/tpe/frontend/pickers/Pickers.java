@@ -4,6 +4,7 @@ import ar.edu.itba.poo.tpe.backend.CanvasState;
 import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableFigure;
 import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableFigure2D;
 import ar.edu.itba.poo.tpe.frontend.pane.CanvasPane;
+import ar.edu.itba.poo.tpe.frontend.pane.StatusPane;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
@@ -17,10 +18,12 @@ public class Pickers extends VBox {
     private static final double DEFAULT_STROKE_WIDTH = 10;
 
     private final CanvasState canvasState;
+    private final StatusPane statusPane;
 
-    public Pickers(CanvasPane canvasPane) {
+    public Pickers(CanvasPane canvasPane, StatusPane statusPane) {
 
         this.canvasState = canvasPane.getCanvasState();
+        this.statusPane = statusPane;
 
         this.setStyle(
                 "-fx-spacing: 10;"
@@ -41,10 +44,11 @@ public class Pickers extends VBox {
             if (canvasState.hasSelectedFigures())
                 canvasState.setSelectedFiguresStrokeWidth(width);
             canvasPane.setSelectedStrokeWidth(width);
+            statusPane.updateStatusWidth(width);
         });
 
         ColorPicker strokeColorPicker = new ColorPicker();
-        StrokePicker strokePicker = new StrokePicker(canvasPane);
+        StrokePicker strokePicker = new StrokePicker(canvasPane, statusPane);
 
         strokeColorPicker.setValue(DEFAULT_STROKE_COLOR);
         strokeColorPicker.setOnAction(e -> {
@@ -53,7 +57,7 @@ public class Pickers extends VBox {
 
         Label fillTitle = new Label("Relleno");
         ColorPicker fillColorPicker = new ColorPicker();
-        FillPicker fillPicker = new FillPicker(canvasPane);
+        FillPicker fillPicker = new FillPicker(canvasPane, statusPane);
 
         fillColorPicker.setValue(DEFAULT_FILL_COLOR);
         fillColorPicker.setOnAction(e -> {

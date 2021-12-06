@@ -5,11 +5,12 @@ import ar.edu.itba.poo.tpe.backend.model.Rectangle;
 import ar.edu.itba.poo.tpe.frontend.pane.CanvasPane;
 import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableFigure;
 import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableRectangle;
+import ar.edu.itba.poo.tpe.frontend.pane.StatusPane;
 
 public class RectangleTool extends DrawingTool {
 
-    public RectangleTool(CanvasPane canvasPane) {
-        super(canvasPane);
+    public RectangleTool(CanvasPane canvasPane, StatusPane statusPane) {
+        super(canvasPane, statusPane);
     }
 
     @Override

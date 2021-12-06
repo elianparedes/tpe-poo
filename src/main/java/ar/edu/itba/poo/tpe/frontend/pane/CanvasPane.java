@@ -21,10 +21,12 @@ public class CanvasPane extends Canvas implements StateListener {
     private static final Color SELECTION_STROKE_COLOR = Color.RED;
     private boolean inSelectionPreview = false;
 
-    public CanvasPane(CanvasState canvasState) {
+    public CanvasPane(CanvasState canvasState, StatusPane statusPane) {
         super(800,600);
         this.canvasState = canvasState;
         this.setCursor(Cursor.CROSSHAIR);
+        this.setOnMouseMoved(e -> statusPane.updateStatusPoint(e.getX(), e.getY()));
+
         canvasState.addStateListener(this);
     }
 

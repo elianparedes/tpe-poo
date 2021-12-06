@@ -6,11 +6,12 @@ import ar.edu.itba.poo.tpe.backend.model.Point;
 import ar.edu.itba.poo.tpe.frontend.pane.CanvasPane;
 import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableCircle;
 import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableFigure;
+import ar.edu.itba.poo.tpe.frontend.pane.StatusPane;
 
 public class CircleTool extends EllipseTool {
 
-    public CircleTool(CanvasPane canvasPane) {
-        super(canvasPane);
+    public CircleTool(CanvasPane canvasPane, StatusPane statusPane) {
+        super(canvasPane, statusPane);
     }
 
     @Override

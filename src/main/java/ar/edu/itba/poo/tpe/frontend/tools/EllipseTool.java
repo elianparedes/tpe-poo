@@ -5,11 +5,12 @@ import ar.edu.itba.poo.tpe.backend.model.Point;
 import ar.edu.itba.poo.tpe.frontend.pane.CanvasPane;
 import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableEllipse;
 import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableFigure;
+import ar.edu.itba.poo.tpe.frontend.pane.StatusPane;
 
 public class EllipseTool extends DrawingTool {
 
-    public EllipseTool(CanvasPane canvasPane) {
-        super(canvasPane);
+    public EllipseTool(CanvasPane canvasPane, StatusPane statusPane) {
+        super(canvasPane, statusPane);
     }
 
     @Override

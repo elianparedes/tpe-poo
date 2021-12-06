@@ -4,6 +4,7 @@ import ar.edu.itba.poo.tpe.backend.CanvasState;
 import ar.edu.itba.poo.tpe.backend.model.Point;
 import ar.edu.itba.poo.tpe.backend.model.Rectangle;
 import ar.edu.itba.poo.tpe.frontend.pane.CanvasPane;
+import ar.edu.itba.poo.tpe.frontend.pane.StatusPane;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
@@ -15,14 +16,22 @@ public class SelectionTool extends Tool {
 
     private final CanvasState canvasState;
 
-    public SelectionTool(CanvasPane canvasPane) {
-        super(canvasPane);
+    public SelectionTool(CanvasPane canvasPane, StatusPane statusPane) {
+        super(canvasPane, statusPane);
         this.canvasState = canvasPane.getCanvasState();
     }
 
     private void resetValues() {
         inMultipleSelection = false;
         canvasState.unselectAllFigures();
+    }
+
+    private void updateStatus(){
+        statusPane.updateStatus(
+                canvasState.hasSelectedFigures() ?
+                        "Se seleccionó: " + canvasState.getSelectedFigures() :
+                        "Ninguna figura encontrada"
+        );
     }
 
     @Override
@@ -37,6 +46,8 @@ public class SelectionTool extends Tool {
             canvasState.selectFigure(startPoint);
             if (canvasState.selectedFiguresCount() != 1) {
                 inMultipleSelection = true;
+            } else {
+                updateStatus();
             }
         });
     }
@@ -66,6 +77,7 @@ public class SelectionTool extends Tool {
                     endPoint = new Point(e.getX(), e.getY());
                     selectionRectangle = new Rectangle(startPoint, endPoint);
                     canvasState.selectFiguresWithin(selectionRectangle);
+                    updateStatus();
                     if (!canvasState.hasSelectedFigures()) {
                         resetValues();
                     }
