@@ -6,6 +6,9 @@ import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableFigure;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * DrawingTool administra los eventos para la creación de figuras sobre el canvas.
+ */
 public abstract class DrawingTool extends Tool {
 
     protected static final int DRAWING_TOLERANCE =10;
@@ -15,8 +18,20 @@ public abstract class DrawingTool extends Tool {
         super(canvasPane);
     }
 
+    /**
+     *Crea una DrawableFigure a partir de dos puntos.
+     *
+     * @param firstPoint primer punto del dibujado de la figura
+     * @param secondPoint segundo punto del dibujado de la figura
+     * @return DrawableFigure que haga referencia al nombre de la tool.
+     */
     public abstract DrawableFigure createFigure(Point firstPoint, Point secondPoint);
 
+    /**
+     * Setea la drawingFunction de la figura
+     *
+     * @param drawableFigure
+     */
     public abstract void setDrawingFunction(DrawableFigure drawableFigure);
 
     @Override

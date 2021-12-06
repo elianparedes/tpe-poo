@@ -10,7 +10,7 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
-public class Pickers extends VBox {
+public class PickersBox extends VBox {
 
     private static final Color DEFAULT_FILL_COLOR = Color.YELLOW;
     private static final Color DEFAULT_STROKE_COLOR = Color.BLACK;
@@ -18,7 +18,7 @@ public class Pickers extends VBox {
 
     private final CanvasState canvasState;
 
-    public Pickers(CanvasPane canvasPane) {
+    public PickersBox(CanvasPane canvasPane) {
 
         this.canvasState = canvasPane.getCanvasState();
 

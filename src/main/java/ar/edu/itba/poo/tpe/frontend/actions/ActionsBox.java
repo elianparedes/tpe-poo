@@ -4,9 +4,9 @@ import ar.edu.itba.poo.tpe.frontend.pane.CanvasPane;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
-public class Actions extends VBox {
+public class ActionsBox extends VBox {
 
-    public Actions(CanvasPane canvasPane){
+    public ActionsBox(CanvasPane canvasPane){
 
         this.setStyle(
                 "-fx-spacing: 10"

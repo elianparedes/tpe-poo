@@ -7,6 +7,10 @@ import ar.edu.itba.poo.tpe.frontend.pane.CanvasPane;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
+
+/**
+ * SelectionTool adminsitra el comportamiento de selección simple y selección múltiple de figuras
+ */
 public class SelectionTool extends Tool {
 
     private boolean inMultipleSelection = false;

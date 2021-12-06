@@ -5,6 +5,10 @@ import javafx.event.EventHandler;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 
+/**
+ * Tool administra el comportamiento que debe tener el mouse en relacion a la funcionalidad
+ * de la herramienta
+ */
 public abstract class Tool {
 
     protected final CanvasPane canvasPane;
@@ -15,12 +19,19 @@ public abstract class Tool {
         this.graphicsContext = canvasPane.getGraphicsContext();
     }
 
-    public void action(){
+    /**
+     * Asigna al canvasPane el comportamiento que debe tener el mouse
+     */
+    public void execute(){
         canvasPane.setOnMouseDragged(onMouseDragged());
         canvasPane.setOnMousePressed(onMousePressed());
         canvasPane.setOnMouseReleased(onMouseReleased());
     }
 
+    /**
+     * Setean el comportamiento que debe tener el mouse utilizando la herramienta.
+     * @return manejador de eventos que describe el funcionamiento del mouse.
+     */
     abstract EventHandler<MouseEvent> onMousePressed();
     abstract EventHandler<MouseEvent> onMouseDragged();
     abstract EventHandler<MouseEvent> onMouseReleased();

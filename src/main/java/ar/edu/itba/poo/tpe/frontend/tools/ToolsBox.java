@@ -6,11 +6,16 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
 
-public class Tools extends VBox {
+/**
+ * Tools es el panel de las herramientas que inconporan un comprotamiento que depende de las acciones del mouse sobre el
+ * canvas. Crea y administra los botones, agregandoles su respectiva Tool , es decir, el comportamiento que deberan adoptar
+ * al ser utilizadas.
+ */
+public class ToolsBox extends VBox {
 
     ToggleGroup toggleGroup = new ToggleGroup();
 
-    public Tools(CanvasPane canvasPane) {
+    public ToolsBox(CanvasPane canvasPane) {
         this.setStyle(
                 "-fx-spacing: 10;"
         );
@@ -48,7 +53,7 @@ public class Tools extends VBox {
                 canvasPane.defaultMouseBehaviour();}
             else {
                 Tool selectedTool = (Tool) toggleGroup.getSelectedToggle().getUserData();
-                selectedTool.action();
+                selectedTool.execute();
             }
 
         });
