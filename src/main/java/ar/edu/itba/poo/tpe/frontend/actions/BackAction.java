@@ -10,5 +10,6 @@ public class BackAction extends Action{
     @Override
     public void execute(CanvasPane canvasPane, StatusPane statusPane) {
         canvasPane.getCanvasState().sendToBack(canvasPane.getCanvasState().getSelectedFigures());
+        statusPane.updateStatus("Selección enviada hacia atrás");
     }
 }

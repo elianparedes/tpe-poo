@@ -10,5 +10,6 @@ public class FrontAction extends Action{
     @Override
     public void execute(CanvasPane canvasPane, StatusPane statusPane) {
         canvasPane.getCanvasState().bringToFront(canvasPane.getCanvasState().getSelectedFigures());
+        statusPane.updateStatus("Selección enviada al frente");
     }
 }

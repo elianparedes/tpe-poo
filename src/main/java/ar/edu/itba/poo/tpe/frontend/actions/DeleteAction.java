@@ -10,5 +10,7 @@ public class DeleteAction extends Action{
     @Override
     public void execute(CanvasPane canvasPane, StatusPane statusPane) {
         canvasPane.getCanvasState().removeSelectedFigures();
+        statusPane.updateStatus("Selección borrada");
     }
+
 }
