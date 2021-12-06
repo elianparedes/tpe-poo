@@ -8,6 +8,10 @@ import ar.edu.itba.poo.tpe.frontend.pane.StatusPane;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
 
+
+/**
+ * SelectionTool adminsitra el comportamiento de selección simple y selección múltiple de figuras
+ */
 public class SelectionTool extends Tool {
 
     private boolean inMultipleSelection = false;
@@ -21,6 +25,10 @@ public class SelectionTool extends Tool {
         this.canvasState = canvasPane.getCanvasState();
     }
 
+    /**
+     * Setea los valores por defécto que se consideran necesarios para poder llevar a cabo una próxima selección
+     * a la ejecutada al momento de llamar a este método.
+     */
     private void resetValues() {
         inMultipleSelection = false;
         canvasState.unselectAllFigures();

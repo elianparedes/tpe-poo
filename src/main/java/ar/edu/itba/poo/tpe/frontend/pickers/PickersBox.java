@@ -11,19 +11,17 @@ import javafx.scene.control.Slider;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
-public class Pickers extends VBox {
+public class PickersBox extends VBox {
 
     private static final Color DEFAULT_FILL_COLOR = Color.YELLOW;
     private static final Color DEFAULT_STROKE_COLOR = Color.BLACK;
     private static final double DEFAULT_STROKE_WIDTH = 10;
 
     private final CanvasState canvasState;
-    private final StatusPane statusPane;
 
-    public Pickers(CanvasPane canvasPane, StatusPane statusPane) {
+    public PickersBox(CanvasPane canvasPane, StatusPane statusPane) {
 
         this.canvasState = canvasPane.getCanvasState();
-        this.statusPane = statusPane;
 
         this.setStyle(
                 "-fx-spacing: 10;"

@@ -1,10 +1,14 @@
 package ar.edu.itba.poo.tpe.frontend.pane;
 
-import ar.edu.itba.poo.tpe.frontend.actions.Actions;
-import ar.edu.itba.poo.tpe.frontend.pickers.Pickers;
-import ar.edu.itba.poo.tpe.frontend.tools.Tools;
+import ar.edu.itba.poo.tpe.frontend.actions.ActionsBox;
+import ar.edu.itba.poo.tpe.frontend.pickers.PickersBox;
+import ar.edu.itba.poo.tpe.frontend.tools.ToolsBox;
 import javafx.scene.layout.VBox;
 
+/**
+ * ToolsPane es la barra lateral del editor que contiene los controles y herramientas para el dibujado, modificacion
+ * y seleccion de figuras.
+ */
 public class ToolsPane extends VBox {
 
     public ToolsPane(CanvasPane canvasPane, StatusPane statusPane) {
@@ -17,9 +21,9 @@ public class ToolsPane extends VBox {
         );
 
         this.getChildren().addAll(
-                new Tools(canvasPane, statusPane),
-                new Actions(canvasPane, statusPane),
-                new Pickers(canvasPane, statusPane)
+                new ToolsBox(canvasPane, statusPane),
+                new ActionsBox(canvasPane, statusPane),
+                new PickersBox(canvasPane, statusPane)
         );
 
     }

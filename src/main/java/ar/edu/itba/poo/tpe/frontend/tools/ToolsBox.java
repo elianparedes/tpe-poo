@@ -7,11 +7,17 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
 
-public class Tools extends VBox {
+/**
+ * ToolsBox es el panel de las herramientas que inconporan un comportamiento que depende de las acciones del mouse sobre
+ * el canvas. Crea y administra los botones, agregándoles su respectiva Tool , es decir, el comportamiento que
+ * deberán adoptar al ser utilizadas.
+ */
+public class ToolsBox extends VBox {
 
     ToggleGroup toggleGroup = new ToggleGroup();
 
-    public Tools(CanvasPane canvasPane, StatusPane statusPane) {
+    public ToolsBox(CanvasPane canvasPane, StatusPane statusPane) {
+
         this.setStyle(
                 "-fx-spacing: 10;"
         );
@@ -48,8 +54,12 @@ public class Tools extends VBox {
             if(toggleGroup.getSelectedToggle() == null){
                 canvasPane.defaultMouseBehaviour();}
             else {
+                /**
+                 * El casteo es seguro pues siempre se estan guardando tools en los botones.
+                 * De todas maneras, la función getUserData devuelve un Object, por lo que el casteo es necesario.
+                 */
                 Tool selectedTool = (Tool) toggleGroup.getSelectedToggle().getUserData();
-                selectedTool.action();
+                selectedTool.execute();
             }
         });
 

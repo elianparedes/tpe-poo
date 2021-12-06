@@ -28,7 +28,12 @@ public class RectangleTool extends DrawingTool {
     }
 
     @Override
-    public void setDrawingFunction(DrawableFigure drawableFigure) {
+    protected void setDrawingFunction(DrawableFigure drawableFigure) {
+        /**
+         * El casteo es seguro pues el llamado a la funcion se realiza desde el metodo CreateFigure, donde se
+         * asegura que la figura creada se corresponde con la herramienta. Al ser protected, no se podra llamar al
+         * metodo con una figura que cause un error de ejecucion por el casteo.
+         */
         Rectangle rectangle = (Rectangle) drawableFigure.getFigure();
         drawableFigure.setDrawingFunction(() -> {
             graphicsContext.fillRect(
