@@ -32,7 +32,7 @@ public abstract class DrawingTool extends Tool {
      *
      * @param drawableFigure
      */
-    public abstract void setDrawingFunction(DrawableFigure drawableFigure);
+    protected abstract void setDrawingFunction(DrawableFigure drawableFigure);
 
     @Override
     public EventHandler<MouseEvent> onMousePressed() {

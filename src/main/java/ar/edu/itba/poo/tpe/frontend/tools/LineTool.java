@@ -27,8 +27,13 @@ public class LineTool extends DrawingTool{
     }
 
     @Override
-    public void setDrawingFunction(DrawableFigure drawableFigure) {
+    protected void setDrawingFunction(DrawableFigure drawableFigure) {
         drawableFigure.setDrawingFunction(() -> {
+            /**
+             * El casteo es seguro pues el llamado a la funcion se realiza desde el metodo CreateFigure, donde se
+             * asegura que la figura creada se corresponde con la herramienta. Al ser protected, no se podra llamar al
+             * metodo con una figura que cause un error de ejecucion por el casteo.
+             */
             Line line = (Line) drawableFigure.getFigure();
             graphicsContext.strokeLine(
                     line.getStartPoint().getX(),

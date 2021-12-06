@@ -24,6 +24,10 @@ public class SelectionTool extends Tool {
         this.canvasState = canvasPane.getCanvasState();
     }
 
+    /**
+     * Setea los valores por defécto que se consideran necesarios para poder llevar a cabo una próxima selección
+     * a la ejecutada al momento de llamar a este método.
+     */
     private void resetValues() {
         inMultipleSelection = false;
         canvasState.unselectAllFigures();
