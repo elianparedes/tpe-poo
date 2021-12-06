@@ -1,5 +1,6 @@
 package ar.edu.itba.poo.tpe.frontend.pane;
 
+import ar.edu.itba.poo.tpe.backend.model.Point;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
@@ -24,8 +25,8 @@ public class StatusPane extends BorderPane {
 		statusLabel.setText(text);
 	}
 
-	public void updateStatusPoint(double x, double y){
-		updateStatus(String.format("{%.2f, %.2f}", x, y));
+	public void updateStatusPoint(Point point){
+		updateStatus(point.toString());
 	}
 
 	public void updateStatusColor(String text, Color color){

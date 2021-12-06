@@ -40,7 +40,7 @@ public abstract class DrawingTool extends Tool {
         return (e -> {
             endPoint = null;
             startPoint = new Point(e.getX(),e.getY());
-            statusPane.updateStatusPoint(e.getX(), e.getY());
+            statusPane.updateStatusPoint(startPoint);
         });
     }
 
@@ -48,7 +48,7 @@ public abstract class DrawingTool extends Tool {
     public EventHandler<MouseEvent> onMouseDragged() {
         return (e -> {
             endPoint = new Point(e.getX(),e.getY());
-            statusPane.updateStatusPoint(e.getX(), e.getY());
+            statusPane.updateStatusPoint(endPoint);
         });
     }
 

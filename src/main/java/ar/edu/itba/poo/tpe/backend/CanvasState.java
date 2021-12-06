@@ -10,7 +10,7 @@ import java.util.*;
 public class CanvasState {
 
     private final Deque<DrawableFigure> figures = new LinkedList<>();
-    private final Deque<DrawableFigure> selectedFigures = new LinkedList<>();
+    private final List<DrawableFigure> selectedFigures = new ArrayList<>();
 
     private final ArrayList<StateListener> listeners = new ArrayList<>();
 
@@ -63,7 +63,7 @@ public class CanvasState {
     }
 
     public void selectFigure(DrawableFigure figure) {
-        selectedFigures.offer(figure);
+        selectedFigures.add(figure);
         notifyStateChange();
     }
 

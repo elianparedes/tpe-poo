@@ -2,6 +2,7 @@ package ar.edu.itba.poo.tpe.frontend.pane;
 
 import ar.edu.itba.poo.tpe.backend.CanvasState;
 import ar.edu.itba.poo.tpe.backend.StateListener;
+import ar.edu.itba.poo.tpe.backend.model.Point;
 import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableFigure;
 import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableFigure2D;
 import javafx.scene.Cursor;
@@ -25,7 +26,19 @@ public class CanvasPane extends Canvas implements StateListener {
         super(800,600);
         this.canvasState = canvasState;
         this.setCursor(Cursor.CROSSHAIR);
-        this.setOnMouseMoved(e -> statusPane.updateStatusPoint(e.getX(), e.getY()));
+        this.setOnMouseMoved(e -> {
+            Point mousePoint = new Point(e.getX(), e.getY());
+            statusPane.updateStatusPoint(mousePoint);
+
+            StringBuilder statusString = new StringBuilder();
+            for (DrawableFigure figure : canvasState.getFigures() ) {
+                if (figure.pointBelongs(mousePoint))
+                           statusString.append(figure);
+            }
+
+            if (!statusString.isEmpty())
+                statusPane.updateStatus(statusString.toString());
+        });
 
         canvasState.addStateListener(this);
     }
