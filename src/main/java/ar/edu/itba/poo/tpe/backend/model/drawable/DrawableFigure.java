@@ -53,4 +53,8 @@ public abstract class DrawableFigure {
         this.drawingFunction = drawingFunction;
     }
 
+    @Override
+    public String toString() {
+        return figure.toString();
+    }
 }
