@@ -10,7 +10,6 @@ public class Tools extends VBox {
 
     ToggleGroup toggleGroup = new ToggleGroup();
 
-
     public Tools(CanvasPane canvasPane) {
         this.setStyle(
                 "-fx-spacing: 10;"

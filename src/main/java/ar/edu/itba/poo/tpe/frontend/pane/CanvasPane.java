@@ -14,9 +14,9 @@ public class CanvasPane extends Canvas implements StateListener {
     private final CanvasState canvasState;
     private final GraphicsContext graphicsContext = getGraphicsContext2D();
 
-    private Color selectedFillColor = Color.YELLOW;
-    private Color  selectedStrokeColor = Color.CORNFLOWERBLUE;
-    private double selectedStrokeWidth = 5;
+    private Color selectedFillColor;
+    private Color  selectedStrokeColor;
+    private double selectedStrokeWidth;
 
     private static final Color SELECTION_STROKE_COLOR = Color.RED;
     private boolean inSelectionPreview = false;

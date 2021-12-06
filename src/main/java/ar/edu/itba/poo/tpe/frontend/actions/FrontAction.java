@@ -6,6 +6,5 @@ public class FrontAction extends Action{
     @Override
     public void action(CanvasPane canvasPane) {
         canvasPane.getCanvasState().bringToFront(canvasPane.getCanvasState().getSelectedFigures());
-        canvasPane.render();
     }
 }

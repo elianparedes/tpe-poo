@@ -6,6 +6,5 @@ public class BackAction extends Action{
     @Override
     public void action(CanvasPane canvasPane) {
         canvasPane.getCanvasState().sendToBack(canvasPane.getCanvasState().getSelectedFigures());
-        canvasPane.render();
     }
 }

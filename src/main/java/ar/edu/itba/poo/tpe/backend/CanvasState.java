@@ -26,6 +26,7 @@ public class CanvasState {
     public void sendToBack(DrawableFigure figure) {
         figures.remove(figure);
         figures.offerFirst(figure);
+        notifyStateChange();
     }
 
     public void sendToBack(Deque<DrawableFigure> figures) {
@@ -37,6 +38,7 @@ public class CanvasState {
     public void bringToFront(DrawableFigure figure) {
         figures.remove(figure);
         figures.offerLast(figure);
+        notifyStateChange();
     }
 
     public void bringToFront(Deque<DrawableFigure> figures) {

@@ -6,6 +6,5 @@ public class DeleteAction extends Action{
     @Override
     public void action(CanvasPane canvasPane) {
         canvasPane.getCanvasState().removeSelectedFigures();
-        canvasPane.render();
     }
 }
