@@ -15,7 +15,7 @@ public class FillPicker extends Picker{
     }
 
     @Override
-    public void excecute(Color color) {
+    public void execute(Color color) {
         canvasPane.setSelectedFillColor(color);
         canvasPane.getCanvasState().setSelectedFiguresFillColor(new ColorRGB(color.getRed(), color.getGreen(), color.getBlue()));
         statusPane.updateStatusColor("Color de relleno", color);
