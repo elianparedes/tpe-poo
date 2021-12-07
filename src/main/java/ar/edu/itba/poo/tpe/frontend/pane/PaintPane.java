@@ -8,7 +8,7 @@ public class PaintPane extends BorderPane {
     CanvasState canvasState;
 
     CanvasPane canvasPane;
-    ToolsPane sidePane;
+    ToolsPane toolsPane;
     StatusPane statusPane;
 
     public PaintPane(CanvasState canvasState) {
@@ -16,10 +16,10 @@ public class PaintPane extends BorderPane {
 
         statusPane = new StatusPane();
         canvasPane = new CanvasPane(canvasState, statusPane);
-        sidePane = new ToolsPane(canvasPane, statusPane);
+        toolsPane = new ToolsPane(canvasPane, statusPane);
 
         setRight(canvasPane);
-        setLeft(sidePane);
+        setLeft(toolsPane);
         setBottom(statusPane);
     }
 

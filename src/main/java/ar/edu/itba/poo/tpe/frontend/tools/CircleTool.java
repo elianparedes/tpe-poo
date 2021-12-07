@@ -27,5 +27,4 @@ public class CircleTool extends EllipseTool {
 
         return figure;
     }
-
 }
