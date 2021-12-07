@@ -17,5 +17,5 @@ public abstract class Picker {
         this.statusPane = statusPane;
     }
 
-    abstract public void action(Color color);
+    abstract public void excecute(Color color);
 }

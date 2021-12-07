@@ -61,7 +61,7 @@ public class PickersBox extends VBox {
 
         strokeColorPicker.setValue(DEFAULT_STROKE_COLOR);
         strokeColorPicker.setOnAction(e -> {
-            strokePicker.action(strokeColorPicker.getValue());
+            strokePicker.excecute(strokeColorPicker.getValue());
         });
 
         Label fillTitle = new Label("Relleno");
@@ -70,7 +70,7 @@ public class PickersBox extends VBox {
 
         fillColorPicker.setValue(DEFAULT_FILL_COLOR);
         fillColorPicker.setOnAction(e -> {
-            fillPicker.action(fillColorPicker.getValue());
+            fillPicker.excecute(fillColorPicker.getValue());
         });
 
         /**
