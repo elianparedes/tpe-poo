@@ -1,5 +1,6 @@
 package ar.edu.itba.poo.tpe.frontend.pickers;
 
+import ar.edu.itba.poo.tpe.backend.utils.ColorRGB;
 import ar.edu.itba.poo.tpe.frontend.pane.CanvasPane;
 import ar.edu.itba.poo.tpe.frontend.pane.StatusPane;
 import javafx.scene.paint.Color;
@@ -16,7 +17,8 @@ public class StrokePicker extends Picker{
     @Override
     public void action(Color color) {
         canvasPane.startPreview(color);
-        canvasPane.getCanvasState().setSelectedFiguresStrokeColor(color.toString());
+        canvasPane.setSelectedStrokeColor(color);
+        canvasPane.getCanvasState().setSelectedFiguresStrokeColor(new ColorRGB(color.getRed(), color.getGreen(), color.getBlue()));
         statusPane.updateStatusColor("Color de trazo", color);
     }
 }

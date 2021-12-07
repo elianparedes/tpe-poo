@@ -2,10 +2,12 @@ package ar.edu.itba.poo.tpe.frontend.tools;
 
 import ar.edu.itba.poo.tpe.backend.model.Point;
 import ar.edu.itba.poo.tpe.backend.model.Rectangle;
+import ar.edu.itba.poo.tpe.backend.utils.ColorRGB;
 import ar.edu.itba.poo.tpe.frontend.pane.CanvasPane;
 import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableFigure;
 import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableRectangle;
 import ar.edu.itba.poo.tpe.frontend.pane.StatusPane;
+import javafx.scene.paint.Color;
 
 public class RectangleTool extends DrawingTool {
 
@@ -15,10 +17,14 @@ public class RectangleTool extends DrawingTool {
 
     @Override
     public DrawableFigure createFigure(Point firstPoint, Point secondPoint) {
+
+        Color strokeColor = canvasPane.getSelectedStrokeColor();
+        Color fillColor = canvasPane.getSelectedFillColor();
+
         DrawableRectangle figure = new DrawableRectangle(
                 new Rectangle(firstPoint, secondPoint),
-                canvasPane.getSelectedStrokeColor().toString(),
-                canvasPane.getSelectedFillColor().toString(),
+                new ColorRGB(strokeColor.getRed(), strokeColor.getGreen(), strokeColor.getBlue()),
+                new ColorRGB(fillColor.getRed(), fillColor.getGreen(), fillColor.getBlue()),
                 canvasPane.getSelectedStrokeWidth()
         );
 

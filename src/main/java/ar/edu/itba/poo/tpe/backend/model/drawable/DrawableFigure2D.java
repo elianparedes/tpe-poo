@@ -1,17 +1,18 @@
 package ar.edu.itba.poo.tpe.backend.model.drawable;
 
 import ar.edu.itba.poo.tpe.backend.model.Figure;
+import ar.edu.itba.poo.tpe.backend.utils.ColorRGB;
 
 /**
  * Clase que modela una figura en dos dimensiones
  */
 public abstract class DrawableFigure2D extends DrawableFigure {
 
-    private String fillColor;
+    private ColorRGB fillColor;
 
-    public DrawableFigure2D(Figure figure, String stroke, String fill, double lineWidth){
-        super(figure, stroke ,lineWidth);
-        this.fillColor =fill;
+    public DrawableFigure2D(Figure figure, ColorRGB strokeColor, ColorRGB fillColor, double lineWidth){
+        super(figure, strokeColor,lineWidth);
+        this.fillColor = fillColor;
     }
 
     public void drawFigure(){
@@ -23,11 +24,11 @@ public abstract class DrawableFigure2D extends DrawableFigure {
         return true;
     }
 
-    public String getFillColor(){
+    public ColorRGB getFillColor(){
         return fillColor;
     }
 
-    public void setFillColor(String color){
+    public void setFillColor(ColorRGB color){
         this.fillColor = color;
     }
 

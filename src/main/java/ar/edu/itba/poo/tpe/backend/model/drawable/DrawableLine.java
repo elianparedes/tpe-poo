@@ -2,12 +2,13 @@ package ar.edu.itba.poo.tpe.backend.model.drawable;
 
 import ar.edu.itba.poo.tpe.backend.model.Line;
 import ar.edu.itba.poo.tpe.backend.model.Point;
+import ar.edu.itba.poo.tpe.backend.utils.ColorRGB;
 
 import java.util.Objects;
 
 public class DrawableLine extends DrawableFigure {
 
-    public DrawableLine(Line line, String strokeColor, double lineWidth){
+    public DrawableLine(Line line, ColorRGB strokeColor, double lineWidth){
         super(line, strokeColor, lineWidth);
     }
 

@@ -1,12 +1,14 @@
 package ar.edu.itba.poo.tpe.backend.model.drawable;
 
 import ar.edu.itba.poo.tpe.backend.model.Ellipse;
+import ar.edu.itba.poo.tpe.backend.utils.ColorRGB;
+
 import java.util.Objects;
 
 public class DrawableEllipse extends DrawableFigure2D{
 
 
-    public DrawableEllipse(Ellipse ellipse, String strokeColor, String fillColor, double lineWidth) {
+    public DrawableEllipse(Ellipse ellipse, ColorRGB strokeColor, ColorRGB fillColor, double lineWidth) {
         super(ellipse, strokeColor, fillColor, lineWidth);
     }
 

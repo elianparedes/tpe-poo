@@ -5,6 +5,7 @@ import ar.edu.itba.poo.tpe.backend.StateListener;
 import ar.edu.itba.poo.tpe.backend.model.Point;
 import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableFigure;
 import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableFigure2D;
+import ar.edu.itba.poo.tpe.backend.utils.ColorRGB;
 import javafx.scene.Cursor;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -53,11 +54,14 @@ public class CanvasPane extends Canvas implements StateListener {
                 graphicsContext.setStroke(strokeColorPreview);
             if (canvasState.hasSelectedFigures() && canvasState.isSelected(drawableFigure) && !inStrokeColorPreview)
                 graphicsContext.setStroke(SELECTION_STROKE_COLOR);
-            else
-                graphicsContext.setStroke(Color.valueOf(drawableFigure.getStrokeColor()));
-
-            if (drawableFigure.hasFill())
-                graphicsContext.setFill(Color.valueOf(((DrawableFigure2D) drawableFigure).getFillColor()));
+            else{
+                ColorRGB strokeColor = drawableFigure.getStrokeColor();
+                graphicsContext.setStroke(Color.color(strokeColor.getRed(), strokeColor.getGreen(), strokeColor.getBlue()));
+            }
+            if (drawableFigure.hasFill()){
+                ColorRGB fillColor = ((DrawableFigure2D) drawableFigure).getFillColor();
+                graphicsContext.setFill(Color.color(fillColor.getRed(), fillColor.getGreen(), fillColor.getBlue()));
+            }
             drawableFigure.drawFigure();
         }
     }

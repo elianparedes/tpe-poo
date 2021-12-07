@@ -4,6 +4,7 @@ import ar.edu.itba.poo.tpe.backend.model.Figure;
 import ar.edu.itba.poo.tpe.backend.model.Point;
 import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableFigure;
 import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableFigure2D;
+import ar.edu.itba.poo.tpe.backend.utils.ColorRGB;
 
 import java.util.*;
 
@@ -180,7 +181,7 @@ public class CanvasState {
      *
      * @param color Nuevo color del relleno
      */
-    public void setSelectedFiguresFillColor(String color) {
+    public void setSelectedFiguresFillColor(ColorRGB color) {
         for (DrawableFigure selected : selectedFigures) {
             if (selected.hasFill()) {
                 ((DrawableFigure2D) selected).setFillColor(color);
@@ -199,7 +200,7 @@ public class CanvasState {
      *
      * @param color Nuevo color del borde
      */
-    public void setSelectedFiguresStrokeColor(String color){
+    public void setSelectedFiguresStrokeColor(ColorRGB color){
         for (DrawableFigure selected : selectedFigures) {
             selected.setStrokeColor(color);
         }

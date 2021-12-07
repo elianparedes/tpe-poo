@@ -7,7 +7,7 @@ import javafx.scene.layout.VBox;
 
 /**
  * ActionsBox es el panel de los botones que incorporan un comportamiento que se ve reflejado sobre el
- * canvas. Crea y administra los botones, agregándoles su respectiva Action , es decir, el comportamiento que
+ * canvas. Crea y administra los botones, agregándoles su respectiva Action, es decir, el comportamiento que
  * deberán adoptar al ser presionados.
  */
 public class ActionsBox extends VBox {

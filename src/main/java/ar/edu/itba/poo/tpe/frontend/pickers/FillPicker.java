@@ -1,5 +1,6 @@
 package ar.edu.itba.poo.tpe.frontend.pickers;
 
+import ar.edu.itba.poo.tpe.backend.utils.ColorRGB;
 import ar.edu.itba.poo.tpe.frontend.pane.CanvasPane;
 import ar.edu.itba.poo.tpe.frontend.pane.StatusPane;
 import javafx.scene.paint.Color;
@@ -16,7 +17,7 @@ public class FillPicker extends Picker{
     @Override
     public void action(Color color) {
         canvasPane.setSelectedFillColor(color);
-        canvasPane.getCanvasState().setSelectedFiguresFillColor(color.toString());
+        canvasPane.getCanvasState().setSelectedFiguresFillColor(new ColorRGB(color.getRed(), color.getGreen(), color.getBlue()));
         statusPane.updateStatusColor("Color de relleno", color);
     }
 }

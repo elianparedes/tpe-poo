@@ -2,12 +2,14 @@ package ar.edu.itba.poo.tpe.frontend.tools;
 
 import ar.edu.itba.poo.tpe.backend.model.Line;
 import ar.edu.itba.poo.tpe.backend.model.Point;
+import ar.edu.itba.poo.tpe.backend.utils.ColorRGB;
 import ar.edu.itba.poo.tpe.frontend.pane.CanvasPane;
 import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableFigure;
 import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableLine;
 import ar.edu.itba.poo.tpe.frontend.pane.StatusPane;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 public class LineTool extends DrawingTool{
     public LineTool(CanvasPane canvasPane, StatusPane statusPane) {
@@ -16,9 +18,12 @@ public class LineTool extends DrawingTool{
 
     @Override
     public DrawableFigure createFigure(Point firstPoint, Point secondPoint) {
+
+        Color strokeColor = canvasPane.getSelectedStrokeColor();
+
         DrawableLine figure = new DrawableLine(
                 new Line(firstPoint, secondPoint),
-                canvasPane.getSelectedStrokeColor().toString(),
+                new ColorRGB(strokeColor.getRed(), strokeColor.getGreen(), strokeColor.getBlue()),
                 canvasPane.getSelectedStrokeWidth()
         );
 

@@ -3,6 +3,7 @@ package ar.edu.itba.poo.tpe.frontend.pickers;
 import ar.edu.itba.poo.tpe.backend.CanvasState;
 import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableFigure;
 import ar.edu.itba.poo.tpe.backend.model.drawable.DrawableFigure2D;
+import ar.edu.itba.poo.tpe.backend.utils.ColorRGB;
 import ar.edu.itba.poo.tpe.frontend.pane.CanvasPane;
 import ar.edu.itba.poo.tpe.frontend.pane.StatusPane;
 import javafx.scene.control.ColorPicker;
@@ -80,9 +81,12 @@ public class PickersBox extends VBox {
         canvasState.addStateListener(() -> {
             if (canvasState.hasSelectedFigures()) {
                 for (DrawableFigure figure : canvasState.getSelectedFigures()) {
-                    if (figure.hasFill())
-                        fillColorPicker.setValue(Color.valueOf(((DrawableFigure2D) figure).getFillColor()));
-                    strokeColorPicker.setValue(Color.valueOf(figure.getStrokeColor()));
+                    if (figure.hasFill()) {
+                        ColorRGB fillColor = ((DrawableFigure2D) figure).getFillColor();
+                        fillColorPicker.setValue(Color.color(fillColor.getRed(), fillColor.getGreen(), fillColor.getBlue()));
+                    }
+                    ColorRGB strokeColor = figure.getStrokeColor();
+                    strokeColorPicker.setValue(Color.color(strokeColor.getRed(), strokeColor.getGreen(), strokeColor.getBlue()));
                     strokeSlider.setValue(figure.getStrokeWidth());
                 }
             }

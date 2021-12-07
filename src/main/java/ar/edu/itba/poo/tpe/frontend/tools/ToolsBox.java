@@ -54,7 +54,7 @@ public class ToolsBox extends VBox {
             if(toggleGroup.getSelectedToggle() == null){
                 canvasPane.defaultMouseBehaviour();}
             else {
-                /**
+                /*
                  * El casteo es seguro pues siempre se estan guardando tools en los botones.
                  * De todas maneras, la función getUserData devuelve un Object, por lo que el casteo es necesario.
                  */

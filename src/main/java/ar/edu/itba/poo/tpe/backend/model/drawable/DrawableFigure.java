@@ -2,6 +2,7 @@ package ar.edu.itba.poo.tpe.backend.model.drawable;
 
 import ar.edu.itba.poo.tpe.backend.model.Figure;
 import ar.edu.itba.poo.tpe.backend.model.Point;
+import ar.edu.itba.poo.tpe.backend.utils.ColorRGB;
 
 /**
  * Clase que modela una figura que se puede dibujar.
@@ -13,16 +14,16 @@ public abstract class DrawableFigure {
      */
     private final Figure figure;
     private double strokeWidth;
-    private String strokeColor;
+    private ColorRGB strokeColor;
 
     /**
      * Interfaz funcional que indica a la figura como será dibujada
      */
     protected DrawingFunction drawingFunction;
 
-    public DrawableFigure(Figure figure, String stroke, double lineWidth) {
+    public DrawableFigure(Figure figure, ColorRGB strokeColor, double lineWidth) {
         this.figure = figure;
-        this.strokeColor = stroke;
+        this.strokeColor = strokeColor;
         this.strokeWidth = lineWidth;
     }
 
@@ -39,7 +40,7 @@ public abstract class DrawableFigure {
     //***************************
     // Getters
     //***************************
-    public String getStrokeColor() {
+    public ColorRGB getStrokeColor() {
         return strokeColor;
     }
 
@@ -54,7 +55,7 @@ public abstract class DrawableFigure {
     //***************************
     // Setters
     //***************************
-    public void setStrokeColor(String color) {
+    public void setStrokeColor(ColorRGB color) {
         this.strokeColor = color;
     }
 

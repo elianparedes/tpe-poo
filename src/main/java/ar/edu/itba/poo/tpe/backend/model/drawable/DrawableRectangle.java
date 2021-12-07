@@ -1,13 +1,14 @@
 package ar.edu.itba.poo.tpe.backend.model.drawable;
 
 import ar.edu.itba.poo.tpe.backend.model.Rectangle;
+import ar.edu.itba.poo.tpe.backend.utils.ColorRGB;
 
 import java.util.Objects;
 
 
 public class DrawableRectangle extends DrawableFigure2D{
 
-    public DrawableRectangle(Rectangle rectangle, String strokeColor, String fillColor, double lineWidth) {
+    public DrawableRectangle(Rectangle rectangle, ColorRGB strokeColor, ColorRGB fillColor, double lineWidth) {
         super(rectangle, strokeColor, fillColor, lineWidth);
     }
 
