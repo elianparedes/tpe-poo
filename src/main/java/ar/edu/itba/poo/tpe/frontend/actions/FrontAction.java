@@ -9,7 +9,9 @@ import ar.edu.itba.poo.tpe.frontend.pane.StatusPane;
 public class FrontAction extends Action{
     @Override
     public void execute(CanvasPane canvasPane, StatusPane statusPane) {
-        canvasPane.getCanvasState().bringToFront(canvasPane.getCanvasState().getSelectedFigures());
-        statusPane.updateStatus("Selección enviada al frente");
+        if (canvasPane.getCanvasState().hasSelectedFigures()) {
+            canvasPane.getCanvasState().bringToFront(canvasPane.getCanvasState().getSelectedFigures());
+            statusPane.updateStatus("Selección enviada al frente");
+        }
     }
 }

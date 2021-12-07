@@ -9,7 +9,9 @@ import ar.edu.itba.poo.tpe.frontend.pane.StatusPane;
 public class BackAction extends Action{
     @Override
     public void execute(CanvasPane canvasPane, StatusPane statusPane) {
-        canvasPane.getCanvasState().sendToBack(canvasPane.getCanvasState().getSelectedFigures());
-        statusPane.updateStatus("Selección enviada hacia atrás");
+        if (canvasPane.getCanvasState().hasSelectedFigures()){
+            canvasPane.getCanvasState().sendToBack(canvasPane.getCanvasState().getSelectedFigures());
+            statusPane.updateStatus("Selección enviada hacia atrás");
+        }
     }
 }

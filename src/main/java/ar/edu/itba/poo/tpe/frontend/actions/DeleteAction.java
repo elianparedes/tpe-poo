@@ -9,8 +9,10 @@ import ar.edu.itba.poo.tpe.frontend.pane.StatusPane;
 public class DeleteAction extends Action{
     @Override
     public void execute(CanvasPane canvasPane, StatusPane statusPane) {
-        canvasPane.getCanvasState().removeSelectedFigures();
-        statusPane.updateStatus("Selección borrada");
+        if (canvasPane.getCanvasState().hasSelectedFigures()){
+            canvasPane.getCanvasState().removeSelectedFigures();
+            statusPane.updateStatus("Selección borrada");
+        }
     }
 
 }
