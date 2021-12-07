@@ -15,7 +15,7 @@ public class StrokePicker extends Picker{
     }
 
     @Override
-    public void excecute(Color color) {
+    public void execute(Color color) {
         canvasPane.startPreview(color);
         canvasPane.setSelectedStrokeColor(color);
         canvasPane.getCanvasState().setSelectedFiguresStrokeColor(new ColorRGB(color.getRed(), color.getGreen(), color.getBlue()));
