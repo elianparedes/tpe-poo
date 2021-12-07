@@ -6,6 +6,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 
+
+/**
+ * Panel de visualizacion con informacion actual de las acciones realizadas y de elementos en pantalla
+ */
 public class StatusPane extends BorderPane {
 
 	private final Label statusLabel;
@@ -20,7 +24,7 @@ public class StatusPane extends BorderPane {
 		statusLabel.setStyle("-fx-font-size: 16");
 		setCenter(statusLabel);
 	}
-	
+
 	public void updateStatus(String text) {
 		statusLabel.setText(text);
 	}

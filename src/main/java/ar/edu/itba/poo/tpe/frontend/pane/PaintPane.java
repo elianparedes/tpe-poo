@@ -3,6 +3,9 @@ package ar.edu.itba.poo.tpe.frontend.pane;
 import ar.edu.itba.poo.tpe.backend.CanvasState;
 import javafx.scene.layout.BorderPane;
 
+/**
+ * Panel del área de trabajo principal del editor de figuras
+ */
 public class PaintPane extends BorderPane {
 
     CanvasState canvasState;

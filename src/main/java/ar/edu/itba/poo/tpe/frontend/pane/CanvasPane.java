@@ -11,6 +11,9 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 
+/**
+ * Panel de visualizacion del area de trabajo y renderizado de figuras
+ */
 public class CanvasPane extends Canvas implements StateListener {
 
     private final CanvasState canvasState;
@@ -45,6 +48,10 @@ public class CanvasPane extends Canvas implements StateListener {
         canvasState.addStateListener(this);
     }
 
+    /**
+     * Establece los valores de trazo y relleno para el renderizado de las figuras.Contempla distintos casos como
+     * una preview de seleccion de trazos, o renderizado con borde en rojo para figuras seleccionadas
+     */
     public void render() {
         graphicsContext.clearRect(0, 0, this.getWidth(), this.getHeight());
         for (DrawableFigure drawableFigure : canvasState.getFigures()) {
@@ -66,6 +73,9 @@ public class CanvasPane extends Canvas implements StateListener {
         }
     }
 
+    /**
+     * Metodo de la interfaz StateListener que se ejecuta cada vez que se realiza un cambio en el canvasState
+     */
     @Override
     public void onStateChange() {
         if (!canvasState.hasSelectedFigures())
@@ -77,11 +87,19 @@ public class CanvasPane extends Canvas implements StateListener {
         return inStrokeColorPreview;
     }
 
+    /**
+     * Finaliza el renderizado en modo preview, permitiendo reestablecer el comportamiento general de seleccion
+     * de figuras y visualizacion de figuras
+     */
     public void endPreview(){
         inStrokeColorPreview = false;
         render();
     }
 
+    /**
+     * Establece un renderizado especifico para mostrar una preview al usuario de los colores del stroke
+     * @param color del stroke seleccionado en el picker
+     */
     public void startPreview(Color color){
         inStrokeColorPreview = true;
         strokeColorPreview = color;
