@@ -15,11 +15,6 @@ public abstract class DrawableFigure2D extends DrawableFigure {
         this.fillColor = fillColor;
     }
 
-    public void drawFigure(){
-        if (drawingFunction != null)
-            drawingFunction.draw();
-    }
-
     public boolean hasFill(){
         return true;
     }

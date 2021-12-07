@@ -9,7 +9,7 @@ import ar.edu.itba.poo.tpe.backend.utils.ColorRGB;
 import java.util.*;
 
 /**
- * Clase que modela un gestor de figuras que pueden ser dibujadas, almacenadas en una colección First In,First Out.
+ * Clase que modela un gestor de figuras que pueden ser dibujadas, almacenadas en una colección First In,First Out (Deque)
  */
 public class CanvasState {
 

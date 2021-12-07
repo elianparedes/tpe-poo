@@ -66,7 +66,7 @@ public class Ellipse extends Figure{
 
     @Override
     public String toString(){
-        return String.format("Elipse [Centro: %s, DHoriz: %.2f, DVertical: %.2f]", centerPoint, sHorizontalAxis, sVerticalAxis);
+        return String.format("Elipse [Centro: %s, DHoriz: %.2f, DVertical: %.2f]", centerPoint, sHorizontalAxis*2, sVerticalAxis*2);
     }
 
     @Override

@@ -28,7 +28,7 @@ public abstract class DrawableFigure {
     }
 
     /**
-     * Dibuja la figura a través de la interfaz drawingFunction. Si no existe una drawingFunction,
+     * Dibuja la figura a través de la interfaz drawingFunction. Si no existe una drawingFunction
      * colocoda, lanza NullPointerException
      */
     public void drawFigure() {

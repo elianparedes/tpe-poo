@@ -1,5 +1,8 @@
 package ar.edu.itba.poo.tpe.backend.utils;
 
+/**
+ * Clase que modela un color a partir de sus valores de rojo, verde y azul
+ */
 public class ColorRGB {
 
     private double red, green, blue;
