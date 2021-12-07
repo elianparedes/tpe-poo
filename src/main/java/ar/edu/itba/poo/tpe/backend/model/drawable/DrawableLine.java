@@ -21,11 +21,6 @@ public class DrawableLine extends DrawableFigure {
     }
 
     @Override
-    public void moveFigure(double deltaX, double deltaY) {
-        getFigure().moveFigure(deltaX, deltaY);
-    }
-
-    @Override
     public boolean equals(Object obj) {
         if(this == obj)
             return true;

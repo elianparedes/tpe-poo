@@ -2,26 +2,27 @@ package ar.edu.itba.poo.tpe.backend.model;
 
 import java.util.Objects;
 
+/**
+ * Clase que modela un punto en el eje cartesiano
+ */
 public class Point {
 
-    public double x, y;
+    private double x, y;
 
     public Point(double x, double y) {
         this.x = x;
         this.y = y;
     }
 
+    //***********************
+    //  Getters
+    //***********************
     public double getX() {
         return x;
     }
 
     public double getY() {
         return y;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("{%.2f , %.2f}", x, y);
     }
 
     public void movePoint(double deltaX, double deltaY){
@@ -31,6 +32,15 @@ public class Point {
 
     public double distance(Point point){
         return Math.abs(Math.sqrt((x - point.x)*(x-point.x) + (y - point.y)*(y - point.y)));
+    }
+
+    public boolean isLower(Point point){
+        return x < point.getX() && y < point.getY();
+    }
+
+    @Override
+    public String toString() {
+        return String.format("{%.2f , %.2f}", x, y);
     }
 
     @Override
@@ -48,8 +58,4 @@ public class Point {
         return Objects.hash(x,y);
     }
 
-
-    public boolean isLower(Point point){
-        return x < point.getX() && y < point.getY();
-    }
 }

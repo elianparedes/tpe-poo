@@ -2,6 +2,9 @@ package ar.edu.itba.poo.tpe.backend.model.drawable;
 
 import ar.edu.itba.poo.tpe.backend.model.Figure;
 
+/**
+ * Clase que modela una figura en dos dimensiones
+ */
 public abstract class DrawableFigure2D extends DrawableFigure {
 
     private String fillColor;
