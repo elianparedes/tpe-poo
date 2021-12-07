@@ -7,10 +7,19 @@ import ar.edu.itba.poo.tpe.frontend.pane.CanvasPane;
 import ar.edu.itba.poo.tpe.frontend.pane.StatusPane;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.paint.Color;
 
 
 /**
- * SelectionTool adminsitra el comportamiento de selección simple y selección múltiple de figuras
+ * SelectionTool adminsitra el comportamiento de selección simple y selección múltiple de figuras.
+ * Las figuras seleccionadas muestran su trazo en rojo. Al deseleccionarse, el color de su trazo será el original.
+ *
+ *  Comportamiento Simple: Al clickear sobre una figura, la misma se muestra seleccionada. Al moverla, seguirá seleccionada
+ *  para un nuevo movimiento. Si se desea deseleccionar la figura, clickear en un espacio en blanco en el canvas.
+ *
+ *  Comportamiento Multiple: Se debe crear un rectángulo de selección. El mismo seleccionará todas las figuras que en
+ *  su totalidad pertenézcan al area del rectángulo. Se puede presionar en cualquier sector de la pantalla, iclusive sobre
+ *  una figura, para mover las seleccionadas. Al finalizar el movimiento, todas se deseleccionaran.
  */
 public class SelectionTool extends Tool {
 
@@ -46,8 +55,11 @@ public class SelectionTool extends Tool {
     public EventHandler<MouseEvent> onMousePressed() {
         return (e -> {
             startPoint = new Point(e.getX(), e.getY());
-            if (inMultipleSelection)
+            if (inMultipleSelection) {
+                if(canvasPane.InStrokeColorPreview())
+                    canvasPane.endPreview();
                 return;
+            }
             if (canvasState.selectedFiguresCount() > 0) {
                 canvasState.unselectAllFigures();
             }

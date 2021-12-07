@@ -12,8 +12,8 @@ public class StrokePicker extends Picker{
 
     @Override
     public void action(Color color) {
-        canvasPane.strokeColorPreview(color.toString());
-        canvasPane.setSelectedStrokeColor(color);
+        canvasPane.startPreview(color);
+        canvasPane.getCanvasState().setSelectedFiguresStrokeColor(color.toString());
         statusPane.updateStatusColor("Color de trazo", color);
     }
 }

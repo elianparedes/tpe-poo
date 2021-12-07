@@ -17,10 +17,11 @@ public class CanvasPane extends Canvas implements StateListener {
 
     private Color selectedFillColor;
     private Color  selectedStrokeColor;
+    private Color strokeColorPreview;
     private double selectedStrokeWidth;
 
     private static final Color SELECTION_STROKE_COLOR = Color.RED;
-    private boolean inSelectionPreview = false;
+    private boolean inStrokeColorPreview = false;
 
     public CanvasPane(CanvasState canvasState, StatusPane statusPane) {
         super(800,600);
@@ -48,7 +49,9 @@ public class CanvasPane extends Canvas implements StateListener {
         for (DrawableFigure drawableFigure : canvasState.getFigures()) {
             graphicsContext.setLineWidth(drawableFigure.getStrokeWidth());
 
-            if (canvasState.hasSelectedFigures() && canvasState.isSelected(drawableFigure) && !inSelectionPreview)
+            if(inStrokeColorPreview)
+                graphicsContext.setStroke(strokeColorPreview);
+            if (canvasState.hasSelectedFigures() && canvasState.isSelected(drawableFigure) && !inStrokeColorPreview)
                 graphicsContext.setStroke(SELECTION_STROKE_COLOR);
             else
                 graphicsContext.setStroke(Color.valueOf(drawableFigure.getStrokeColor()));
@@ -62,13 +65,22 @@ public class CanvasPane extends Canvas implements StateListener {
     @Override
     public void onStateChange() {
         if (!canvasState.hasSelectedFigures())
-            inSelectionPreview = false;
+            inStrokeColorPreview = false;
         render();
     }
 
-    public void strokeColorPreview(String color){
-        inSelectionPreview = true;
-        canvasState.setSelectedFiguresStrokeColor(color);
+    public boolean InStrokeColorPreview(){
+        return inStrokeColorPreview;
+    }
+
+    public void endPreview(){
+        inStrokeColorPreview = false;
+        render();
+    }
+
+    public void startPreview(Color color){
+        inStrokeColorPreview = true;
+        strokeColorPreview = color;
     }
 
     public void defaultMouseBehaviour(){

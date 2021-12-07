@@ -9,6 +9,11 @@ import javafx.scene.input.MouseEvent;
 
 /**
  * DrawingTool administra los eventos para la creación de figuras sobre el canvas.
+ *
+ * Para dibujar una figura en el canvas, se debe realizar un primer click el cual colocará un primer punto. El mouse
+ * debe ser arrastrado en direcciones de un cuarto cuadrante de un sistema de coordenadas y luego se debe realizar un
+ * segundo click. Dichos dos puntos determinan la figura. Cada figura los utilizará, a su manera, para determinárse
+ * a sí mismas.
  */
 public abstract class DrawingTool extends Tool {
 
